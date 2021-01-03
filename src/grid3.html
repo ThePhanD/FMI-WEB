@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Grid N: 3</title>
+	<link type="text/css" rel="stylesheet" href="gridStyle3.css" />
+</head>
+<body>
+	<section class="containerDisplay">
+		<div class="one">
+		<form> 
+			Enter Row Number: 
+			<input type="number" id="Rows" name="TextBox1" size="4"> <br>
+			Enter Col Number: 
+			<input type="number" id="Cols" name="TextBox2" size="4">
+			<br>
+			<input type="button" name="clickbtn" value="Display Result" onclick="createGrid()">
+			<button type="button" onclick="clearBox('container')">Remove Grid</button>
+		</form>
+		</div>
+		
+		<div class="two">
+		<form>
+			Choose color:
+			<input type="color" id="favcolor" name="favcolor" value="#ff0000"> <br>
+			Input time(sec):
+			<input type="number" id="timeColor" name="timeColor" size="4" min="0" step="0.01"> <br>
+			<button id="changecolorBtn" type="button" onclick="changeColorByPickForActiveGrid();">ChangeTo</button> 
+		</form>
+		</div>
+		
+		<div class="two">
+			
+				Choose color:
+				<input type="color" id="colorAll" name="colorAll" value="#ff0000"> <br>
+				Input time(sec):
+				<input type="number" id="timeColorAll" name="timeColorAll" size="4" min="0.1" step="0.01"> <br>
+				<button id="changeColorAll" type="button" onclick="changeColorAllGrid();">All</button> <br>
+			
+			
+			<button id="mexicanWaveBtn" type="button" onclick="mexicanWave();">Mexican Wave</button>
+			<button id="epilepsyBtn" type="button" onclick="changeColorEpilepsy();">Seiger warning</button>
+		</div>
+		
+		<div class="two">
+			#Radnom grid(number):
+			<input type="number" id="timeColorRandom" name="timeColorRandom" size="4" min="0" step="1"> <br>
+			<button id="changeColorRandom" type="button" onclick="changeColorRandom(document.getElementById('timeColorRandom').value);">Random</button>
+			<button id="changeColorWTF" type="button" onclick="wtf();">WTF</button> 
+			<button id="colorFire" type="button" onclick="showFire();">Fire</button>
+			<button id="colorGrinch" type="button" onclick="showGrinch();">Grinch</button>				
+			
+		</div>
+		
+		<div class="two">
+			<input type="file" name="inputfile" id="inputfile"> 
+		</div>
+	</section>
+	
+	<br>
+	<div id="container"></div>
+
+	<script type="text/javascript" src="Note.js"></script> 
+	<script type="text/javascript" src="firePixel.js"></script> 
+	<script type="text/javascript" src="grinchPixel.js"></script> 
+	<script type="text/javascript" src="gridJavaScript3.js"></script> 
+	
+</body>
+</html>
