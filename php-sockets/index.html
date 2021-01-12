@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>  
 <html>   
     <body style = "text-align:center;"> 
+	<script src="script.js"></script>
 	
         <p id = "GFG_UP" style = 
             "font-size: 16px; font-weight: bold;">      
@@ -13,39 +14,4 @@
         <p id = "GFG_DOWN" style = 
             "color:green; font-size: 20px; font-weight: bold;"> 
         </p> 
-          
-        <script> 
-            var el_up = document.getElementById("GFG_UP"); 
-            var el_down = document.getElementById("GFG_DOWN"); 
-            var str = "Click on button to change the background color"; 
-          
-            el_up.innerHTML = str; 
-			
-			var socket = new WebSocket('ws://localhost:8282');
-			
-			const color = {x:255,y:255,z:0};
-			
-			const convCol=JSON.stringify(color);
-			
-		
-            function changeColor(convCol) {
-                document.body.style.background = 'rgb(' + convCol.x + ',' + convCol.y + ',' + convCol.z + ')'; 
-            } 
-			
-			//sockets sends color
-		    function transmitMessage() {
-                socket.send(convCol);
-            }
-			
-		
-			socket.onmessage = function(e) {
-			var sentColor= JSON.parse(e.data);
-			changeColor(sentColor);
-            }
-              
-            function gfg_Run() { 
-                changeColor(JSON.parse(convCol)); 
-				transmitMessage();
-            }          
-        </script>  
     </body> 

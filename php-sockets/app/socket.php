@@ -23,17 +23,14 @@ class Socket implements MessageComponentInterface {
 
 //sending a message in JSON
     public function onMessage(ConnectionInterface $from, $msg) {
-		$data = JSON_decode($msg);
         foreach ( $this->clients as $client ) {
-
+			$data = JSON_decode($msg);
             if ( $from->resourceId == $client->resourceId ) {
                 continue;
-            }
-			$r=$data->x;
-			$g=$data->y;
-			$b=$data->z;
-			$col=array("x" => $r, "y" => $g, "z" => $b);
-			$client->send(JSON_encode($col));
+			}
+			$col=$data->code;
+			$message=array("code" => $col);
+			$client->send(JSON_encode($message));
 			}
     }
 	
