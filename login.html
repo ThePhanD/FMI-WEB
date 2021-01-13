@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>Влизане в системата</title>
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<script defer src="scripts/utility.js"> </script>
+	<script defer src="scripts/login.js"> </script>
+</head>
+<body>
+	<header>
+		<img src = "./images/color.png" alt="logo" />
+		<h1> Color magic </h1>
+	</header>
+	<main>
+		<form >
+			<table>
+				<tr> 
+					<td id="title"> Добре дошли </td>
+				</tr>
+				<tr>
+					<td><input type="text" id="username" name="username" placeholder=" Потребителско име"/> </td>
+				</tr>
+				<tr> 
+					<td><input type="password" id="password" name="password" placeholder=" Парола"/></td>
+				</tr>
+				<tr> 
+					<td> <input id="login_button" type="submit" value ="Влизане" /> </td>
+				</tr>
+			</table>
+		</form>
+		
+		<section id="errors"></section>
+	</main>
+</body>
+</html>
