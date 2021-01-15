@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Room Creation</title>
+	<link type="text/css" rel="stylesheet" href="css/gridStyle.css" />
+</head>
+<body>
+	<p>Create your room settings and test the color effects</p>
+	<section class="gridColorControl">
+		<div class="gridControl">
+			Row Number: 
+			<input type="number" id="row" name="row" size="4" min="0"> <br>
+			Col Number: 
+			<input type="number" id="col" name="col" size="4" min="0"> <br>
+			<button id="displayGridBtn" type="button">Display Grid</button> <br>
+			<button id="removeGridBtn" type="button">Remove Grid</button> <br>
+			<button id="infoGridBtn" type="button">Grid Info</button>
+		</div>
+		
+		<div class="chooceGridControl">
+			Color:
+			<input type="color" id="colorChoice" name="colorChoice" value="#ff0000"> <br>
+			Time(sec):
+			<input type="number" id="timeColorChoice" name="timeColorChoice" size="4" min="0" step="0.01"> <br>
+			<button id="activeGridBtn" type="button">ChangeTo</button> 
+		</div>
+		
+		<div class="gridColorEffects">
+			Color:
+			<input type="color" id="colorAll" name="colorAll" value="#ff0000"> <br>
+			Time(sec):
+			<input type="number" id="timeColorAll" name="timeColorAll" size="4" min="0.1" step="0.01"> <br>
+			<button id="allGridBtn" type="button">ChangeAll</button> <br>
+			
+			#Random grids:
+			<input type="number" id="gridNumber" size="4" min="0" step="1"> <br>
+			<button id="randomGridBtn" type="button">ChangeRandom</button> <br>
+		</div>
+		
+		<div class="gridColorSpecialEffets">
+			<button id="mexicanWaveBtn" type="button">Mexican Wave</button> <br>
+			<button id="seigerBtn" type="button">Seiger warning</button> <br>
+			<button id="wtfBtn" type="button">WTF</button> 
+			<button id="invalidGridsBtn" type="button">Invalid</button> <br>
+			<button id="occupiedGridsBtn" type="button">Occupied</button>
+			<button id="freeGridsBtn" type="button">Free</button>
+			<!-- <button id="colorFire" type="button" onclick="showFire();">Fire</button> <br> -->
+			<!-- <button id="colorGrinch" type="button" onclick="showGrinch();">Grinch</button>	-->
+		</div>
+	</section>
+	
+	<br>
+	<div id="grid-display"></div>
+
+	<script type="text/javascript" src="scripts/frame.js"></script> 
+	<script type="text/javascript" src="scripts/colorControl.js"></script> 
+	<script type="text/javascript" src="scripts/colorEffects.js"></script> 
+	<script type="text/javascript" src="scripts/gridControl.js"></script> 
+	
+</body>
+</html>
