@@ -1,0 +1,31 @@
+body {
+	background-color: #101820FF;
+}
+
+.infoDisplay {
+	height: 100px;
+	width: 1000px;
+	margin: auto;
+	display: flex;
+	padding: 10px;
+	justify-content: space-evenly;
+	background-color: #1a1a1a;
+	border: 5px solid #006B38FF;
+	margin-left: auto;
+    margin-right: auto;
+}
+
+.colorDisplay {
+	height: 500px;
+	width: 1000px;
+	background-color: black;
+	border: 5px solid #006B38FF;
+	margin-left: auto;
+    margin-right: auto;
+}
+
+.testDisplay {
+	position: absolute;
+	top: 145px;
+	left: 1205px;
+}
