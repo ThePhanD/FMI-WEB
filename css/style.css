@@ -51,6 +51,7 @@ table {
     color: rgba(29, 29, 110, 0.76);
     background-color: rgba(51, 149, 206, 0.76);
     font-weight: bold;
+    width: 210px;
 }
 
 #logout_button {
