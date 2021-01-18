@@ -1,0 +1,102 @@
+.header_page {
+    border-bottom: 3px solid rgb(27, 27, 104);
+    padding-bottom: 2px;
+    padding-top: 2px;
+    font-size: 26px;
+    color:rgb(37, 97, 165);
+    text-shadow: 2px 2px 2px #1b1f8d;
+    /*color: linear-gradient(135deg, #251685 0%, #1E76B0 45%, #A7A7C5 100%); */
+} 
+body {
+    background-image: url('../images/nardo-verdissimo-1.jpg'), url('../images/N01.jpg');
+    background-repeat: no-repeat, no-repeat;
+    background-position: 1000px 200px, top;
+    background-size: auto, cover;  
+}
+
+.logo_header {
+    width: 100px;
+    height: 100px; 
+    float: left; 
+    margin-right: 20px;
+    margin-left: 50px;
+}
+
+#login_button {
+    position: fixed;
+    right:60px;
+    top:80px;
+}
+#register_button {
+    position: fixed;
+    right: 200px;
+    top:80px
+}
+
+
+#login_button, #register_button {
+    border: 3px solid rgb(65, 65, 110);
+    border-radius: 15px;
+    color: rgba(29, 29, 110, 0.76);
+    background-color: rgba(51, 149, 206, 0.76);
+    font-weight: bold;
+    font-size: 15px;
+    width: 120px;
+    height: 40px;
+}
+
+nav {
+    padding-top: 15px;
+    background-color: #7acefc;
+    height: 35px;
+    border-bottom: 3px solid  rgb(27, 27, 104);
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 5px;
+    border-radius: 20px;
+   
+}
+a:hover:not(.active), #login_button:hover, #register_button:hover {
+    background-color: rgb(145, 22, 145);
+    color: white;
+}
+.active {
+    background-color: rgb(27, 27, 104);
+}
+.header_article {
+    margin-top: 40px;
+    margin-left: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(145, 22, 145);
+    
+}
+article p {
+    margin-left: 30px;
+    font-size: 17px;
+}
+
+#group {
+    margin-left: 400px;
+}
+
+.team {
+    font-size: 18px;
+    margin-left: 400px;
+}
+.member {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.fb_icon {
+    width:25px;
+    height: 25px;
+}

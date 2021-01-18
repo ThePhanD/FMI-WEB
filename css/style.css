@@ -1,4 +1,4 @@
-header {
+.header_page {
     text-align: center;
     border-bottom: 2px solid rgb(27, 27, 104);
     margin-bottom: 50px;
@@ -17,8 +17,7 @@ body {
 
 img {
     width: 100px;
-    height: 100px;
-    
+    height: 100px;  
 }
 
 input {
@@ -58,6 +57,11 @@ table {
     position: fixed;
     right:60px;
     top:10px;
+}
+
+#login_button:hover, #register_button:hover {
+    background-color: rgb(145, 22, 145);
+    color: white;
 }
 
 input::placeholder {
