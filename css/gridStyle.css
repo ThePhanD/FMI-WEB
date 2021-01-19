@@ -1,17 +1,5 @@
 body {
-	background-color: #101820FF;
-}
-
-.gridColorControl {
-  margin: auto;
-  display: flex;
-  padding: 10px;
-  justify-content: space-evenly;
-  background-color: #006B38FF;
-  border: 5px solid black;
-  border-radius: 16px;
-  font: 25px Georgia;
-  color: white;
+	background-color: #181818;
 }
 
 :root {
@@ -37,6 +25,7 @@ body {
 .grid-item {
 	cursor: pointer;
 	text-align: center;
+	padding-top: 10px;
 	color: #00ff00;
 }
 

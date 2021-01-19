@@ -1,25 +1,62 @@
 body {
-	background-color: #101820FF;
+	background-color: #181818;
 }
 
-.infoDisplay {
-	height: 100px;
+.dashboard {
+	height: 130px;
 	width: 1000px;
-	margin: auto;
 	display: flex;
-	padding: 10px;
-	justify-content: space-evenly;
-	background-color: #1a1a1a;
-	border: 5px solid #006B38FF;
+	flex-wrap: wrap;
+	padding-bottom: 0px;
+	padding-left: 10px;
+	padding-right: 0px;
+	padding-top: 10px;
+	background-color: rgba(33, 33, 33, 0.98);
+	justify-content: center;
+	border: 3px solid #383838;
+	margin-bottom: 0px;
+	margin-top: 0px;
 	margin-left: auto;
     margin-right: auto;
 }
 
-.colorDisplay {
+.display-tag {
+	align-items: center;
+	background-color: rgba(255, 255, 255, 0.1);
+	border-bottom-left-radius: 16px;
+	border-bottom-right-radius: 16px;
+	border-top-left-radius: 16px;
+	border-top-right-radius: 16px;
+	box-sizing: border-box;
+	color: rgb(255, 255, 255);
+	display: block;
+	font-family: Roboto, Arial, sans-serif;
+	font-size: 17px;
+	font-weight: 400;
+	height: 32px;
+	letter-spacing: normal;
+	line-height: 21px;
+	margin-bottom: 12px;
+	margin-left: 10px;
+	margin-right: 50px;
+	margin-top: 12px;
+	min-width: 12px;
+	outline-color: rgb(255, 255, 255);
+	outline-style: none;
+	outline-width: 0px;
+	padding-bottom: 5px;
+	padding-left: 12px;
+	padding-right: 12px;
+	padding-top: 5px;
+	flex: 25%;
+	text-align: center;
+}
+
+.display-color {
 	height: 500px;
 	width: 1000px;
 	background-color: black;
-	border: 5px solid #006B38FF;
+	border: 5px solid #383838;
 	margin-left: auto;
     margin-right: auto;
 }
