@@ -1,6 +1,3 @@
-
-
-
 const ajax = (url, settings, loggedIn, successUrl) => {
     fetch(url, settings)
         .then(response => response.json())
