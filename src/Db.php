@@ -16,28 +16,43 @@ class Db {
 
     public function __construct() {
 	
-		$config = parse_ini_file("../config/config.ini", true); //asoc masiv
+	$config = parse_ini_file("../config/config.ini", true); //asoc masiv
 	
-		$dbhost = $config['db']['host'];
+	$dbhost = $config['db']['host'];
         $dbName = $config['db']['name'];
         $userName = $config['db']['user'];
         $userPassword = $config['db']['password']; 
-
-        /*$dbhost = "localhost";
-        $dbName = "webProject";
-        $userName = "root";
-        $userPassword = "";*/
 			
-		$this->init($dbhost, $dbName, $userName, $userPassword);
+	$this->init($dbhost, $dbName, $userName, $userPassword);
     }
 	
 	private function init($dbhost, $dbName, $userName, $userPassword) {
         try {
-            $this->connection = new PDO("mysql:host=$dbhost;dbname=$dbName", $userName, $userPassword,
+            $this->connection = new PDO("mysql:host=$dbhost", $userName, $userPassword,
 			  [
           		    PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
             		PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
             ]);
+
+            $sql = "CREATE DATABASE IF NOT EXISTS $dbName DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;";
+            $this->connection->exec($sql);
+            $sql = "USE $dbName";
+            $this->connection->exec($sql);
+
+            $sql = "CREATE TABLE  IF NOT EXISTS users (
+                userid INT AUTO_INCREMENT PRIMARY KEY,
+                username VARCHAR(32) NOT NULL UNIQUE,
+                password VARCHAR(64) NOT NULL,
+                email VARCHAR(64) NOT NULL UNIQUE,
+                isAdmin INT(1) NOT NULL
+            )";
+            $this->connection->exec($sql);
+        
+            $sql = "CREATE TABLE  IF NOT EXISTS rooms (
+                room_number int PRIMARY KEY,
+                capacity int NOT NULL
+            )";
+            $this->connection->exec($sql);
             
             $this->prepareStatements();
 
