@@ -28,16 +28,11 @@ class Db {
 	
 	private function init($dbhost, $dbName, $userName, $userPassword) {
         try {
-            $this->connection = new PDO("mysql:host=$dbhost", $userName, $userPassword,
+            $this->connection = new PDO("mysql:host=$dbhost;dbname=$dbName", $userName, $userPassword,
 			  [
           		    PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
             		PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
             ]);
-
-            $sql = "CREATE DATABASE IF NOT EXISTS $dbName DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;";
-            $this->connection->exec($sql);
-            $sql = "USE $dbName";
-            $this->connection->exec($sql);
 
             $sql = "CREATE TABLE  IF NOT EXISTS users (
                 userid INT AUTO_INCREMENT PRIMARY KEY,
