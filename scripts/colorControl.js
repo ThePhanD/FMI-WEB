@@ -52,14 +52,6 @@ function changeColorGridArr(grids, color, time) {
 	}, time);
 }
 
-function changeColorFrame(frame) {
-	var grids = frame.getGrids();
-	var color = frame.getColor();
-	var time = frame.getTime();
-
-	changeColorGridArr(grids, color, time);
-}
-
 function showRandomGrid(gridLimit) {
 	var i = 0;
 	var limit = parseInt(gridLimit);
@@ -101,4 +93,24 @@ function showSpiralMove(grids, color, time) {
 	}
 	
 	myLoop();
+}
+
+function changeColorFrame(frame) {
+	var grids = frame.getGrids();
+	var colors = frame.getColors();
+	var time = frame.getTime();
+
+	for (var i = 0; i < grids.length; ++i) {
+		var grid = 'grid-item-' + grids[i];
+		document.getElementById(grid).style.backgroundColor =  colors[i];
+		sendColorTo(grids[i], colors[i])
+	}
+	   
+	setTimeout(function(){
+		for (var i = 0; i < grids.length; ++i) {
+			var grid = 'grid-item-' + grids[i];
+			document.getElementById(grid).style.backgroundColor = '';
+			sendColorTo(grids[i], '')
+		}
+	}, time);
 }

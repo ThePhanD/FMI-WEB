@@ -1,9 +1,7 @@
 function changeToColor(color) {
-	var display = "colorDisplay";
+	var display = "display-color";
 	document.getElementById(display).style.backgroundColor = color;
 }
-
-//changeToColor("blue");
 
 var colors = ["blue", "green", "red", "white", "orange", "lime", "silver", "yellow", "purple", "black"];
 

@@ -28,8 +28,8 @@ list.addEventListener('click', function(ev) {
   }
 }, false);
 
-if (document.getElementById("removeGridBtn"))
-	document.getElementById("removeGridBtn").addEventListener("click", clearContainer);
+if (document.getElementById("remove-grid-button"))
+	document.getElementById("remove-grid-button").addEventListener("click", clearContainer);
 function clearContainer() {
 	const display = document.getElementById("grid-display");
     display.innerHTML = "";
@@ -41,8 +41,8 @@ function clearContainer() {
 	invalidSeats = [];
 }
 
-if (document.getElementById("displayGridBtn"))
-	document.getElementById("displayGridBtn").addEventListener("click", createDisplay);
+if (document.getElementById("display-grid-button"))
+	document.getElementById("display-grid-button").addEventListener("click", createDisplay);
 var rows = 0;
 var cols = 0;
 function createDisplay() {
@@ -83,8 +83,8 @@ function createGrid(rowNumber, colNumber) {
 	makeRows(rows, cols);
 }
 
-if (document.getElementById("infoGridBtn"))
-	document.getElementById("infoGridBtn").addEventListener("click", showGridInfo);
+if (document.getElementById("show-grid-info-button"))
+	document.getElementById("show-grid-info-button").addEventListener("click", showGridInfo);
 function showGridInfo() {
 	if (document.getElementById("grid-display").innerHTML == '') {
 		return;
@@ -157,20 +157,20 @@ function setFreeGrids(grids) {
 	}
 }
 
-if (document.getElementById("invalidGridsBtn"))
-	document.getElementById("invalidGridsBtn").addEventListener("click", placeInvalidGrids);
+if (document.getElementById("invalid-seat-button"))
+	document.getElementById("invalid-seat-button").addEventListener("click", placeInvalidGrids);
 function placeInvalidGrids() {
 	setInvalidGrids(activeGrids);
 }
 
-if (document.getElementById("occupiedGridsBtn"))
-	document.getElementById("occupiedGridsBtn").addEventListener("click", placeOcuupiedGrids);
+if (document.getElementById("occupied-seat-button"))
+	document.getElementById("occupied-seat-button").addEventListener("click", placeOcuupiedGrids);
 function placeOcuupiedGrids() {
 	setOccupiedGrids(activeGrids);
 }
 
-if (document.getElementById("freeGridsBtn"))
-	document.getElementById("freeGridsBtn").addEventListener("click", placeFreeGrids);
+if (document.getElementById("free-seat-button"))
+	document.getElementById("free-seat-button").addEventListener("click", placeFreeGrids);
 function placeFreeGrids() {
 	setFreeGrids(activeGrids);
 }
