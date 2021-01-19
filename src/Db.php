@@ -16,14 +16,14 @@ class Db {
 
     public function __construct() {
 	
-	$config = parse_ini_file("../config/config.ini", true); //asoc masiv
+		$config = parse_ini_file("../config/config.ini", true); //asoc masiv
 	
-	$dbhost = $config['db']['host'];
+		$dbhost = $config['db']['host'];
         $dbName = $config['db']['name'];
         $userName = $config['db']['user'];
         $userPassword = $config['db']['password']; 
 			
-	$this->init($dbhost, $dbName, $userName, $userPassword);
+		$this->init($dbhost, $dbName, $userName, $userPassword);
     }
 	
 	private function init($dbhost, $dbName, $userName, $userPassword) {
