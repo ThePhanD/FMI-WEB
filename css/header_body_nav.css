@@ -1,0 +1,52 @@
+.header_page {
+    border-bottom: 3px solid rgb(27, 27, 104);
+    padding-bottom: 2px;
+    padding-top: 2px;
+    font-size: 26px;
+    color:rgb(37, 97, 165);
+    /* color:rgb(74, 147, 231);*/
+    text-shadow: 2px 2px 2px #1b1f8d;
+} 
+
+body {
+    background-image: url('../images/nardo-verdissimo-1.jpg'), url('../images/N01.jpg');
+    background-repeat: no-repeat, no-repeat;
+    background-position: 1000px 200px, top;
+    background-size: auto, cover;  
+}
+
+.logo_header {
+    width: 100px;
+    height: 100px; 
+    float: left; 
+    margin-right: 20px;
+    margin-left: 50px;
+}
+
+nav {
+    padding-top: 15px;
+    background-color: #7acefc;
+    height: 35px;
+    border-bottom: 3px solid  rgb(27, 27, 104);
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 5px;
+    border-radius: 20px;
+   
+}
+
+a:hover:not(.active) {
+    background-color: rgb(145, 22, 145);
+    color: white;
+}
+
+.active {
+    background-color: rgb(27, 27, 104);
+}
