@@ -23,7 +23,7 @@
 	border: 3px solid #383838;
 }
 
-.text-filed {
+.text-field {
 	align-items: center;
 	background-color: rgba(255, 255, 255, 0.1);
 	border-bottom-left-radius: 16px;
@@ -38,6 +38,34 @@
 	font-weight: 500;
 	line-height: 21px;
 	margin-bottom: 5px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	max-height: 32px;
+	min-width: 100px;
+	outline-color: rgb(255, 255, 255);
+	padding-bottom: 5px;
+	padding-left: 12px;
+	padding-right: 12px;
+	padding-top: 5px;
+	text-align: center;
+}
+
+.text-field-black {
+	align-items: center;
+	background-color: rgba(33, 33, 33, 0.98);
+	border-bottom-left-radius: 16px;
+	border-bottom-right-radius: 0px;
+	border-top-left-radius: 16px;
+	border-top-right-radius: 0px;
+	box-sizing: border-box;
+	color: rgb(255, 255, 255);
+	display: block;
+	font-family: Roboto, Arial, sans-serif;
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 21px;
+	margin-bottom: 0px;
 	margin-left: 0px;
 	margin-right: 0px;
 	margin-top: 0px;
@@ -93,6 +121,36 @@
 
 .button-field:hover {
 	background-color: #006B38FF;
+	color: #ece8e1;
+}
+
+.input-text {
+	width: 190px;
+	height: 25px;
+	border-width: 2px 2px 2px 2px;
+	border-style: solid;
+	border-color: #c3cdc0;
+	text-indent: 8px;
+	padding: 0px;
+}
+
+.input-text:hover {
+	border-color: #79a06b;
+}
+
+.create-button {
+	width: 190px;
+	height: 30px;
+	border-width: 2px 2px 2px 2px;
+	border-style: solid;
+	border-color: #c3cdc0;
+	padding: 0px;
+	background-color: rgba(33, 33, 33, 0.98);
+	color: #ffffff;
+}
+
+.create-button:hover {
+	background-color: #0f3301;
 	color: #ece8e1;
 }
 
