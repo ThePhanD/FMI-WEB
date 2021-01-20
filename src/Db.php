@@ -14,9 +14,9 @@ class Db {
 
     public function __construct() {
 	
-		$config = parse_ini_file("../config/config.ini", true); //asoc masiv
+	$config = parse_ini_file("../config/config.ini", true); //asoc masiv
 	
-		$dbhost = $config['db']['host'];
+	$dbhost = $config['db']['host'];
         $dbName = $config['db']['name'];
         $userName = $config['db']['user'];
         $userPassword = $config['db']['password']; 
@@ -52,7 +52,7 @@ class Db {
                 colNumber int NOT NULL,
                 creator VARCHAR(32) NOT NULL,
                 music VARCHAR(64) NOT NULL,
-                places NOT NULL
+                places VARCHAR(2056) NOT NULL
             )";
             $this->connection->exec($sql);
             
