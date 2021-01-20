@@ -48,7 +48,11 @@
                 if ($isUserValid["success"]) {
                     $_SESSION["username"] = $username;
                     $_SESSION["userid"] = $user->getUserId();
-                    $_SESSION["isAdmin"] = $user->getIsAdmin();
+                    $isAdmin =  $user->getIsAdmin();
+                    $_SESSION["isAdmin"] = $isAdmin;
+
+                    $expires = time() + 60 * 60 * 24;
+                    setcookie("isAdmin", $isAdmin, $expires, "/" );
                 } 
                 else {
                     $errors[] = $isUserValid["error"];
@@ -177,6 +181,8 @@
         if ($_SESSION) {
             session_unset();
             session_destroy();
+
+            setcookie("isAdmin", "", time() - 60, "/");
     
             echo json_encode(["success" => true]);
         } 
