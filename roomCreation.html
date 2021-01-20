@@ -7,12 +7,19 @@
 	<link type="text/css" rel="stylesheet" href="css/gridStyle.css" />
 </head>
 <body>
-	<p>Create your room settings and test the color effects</p>
+	<div class="dashboard-control" id="dashboard-roomname">
+		<p class="text-field-black">Create your room settings and test the color effects.</p>
+		<p class="text-field-black">Room name:</p>
+		<input type="text" class="input-text" id="room-name" name="room-name"/>
+		<p class="text-field-black">Music name:</p>
+		<input type="text" class="input-text" id="music-name" name="music-name">
+		<button class="create-button" id="create-room-button" type="button">Create</button>
+	</div>
 	<div class="dashboard-control" id="dashboard-control">
 		<div class="command-display" id="grid-command">
-			<p class="text-filed">Row Number:</p>
+			<p class="text-field">Row Number:</p>
 			<input class="number-field" type="number" id="row" name="row" size="4" min="0" step="1" value="1">
-			<p class="text-filed">Col Number:</p> 
+			<p class="text-field">Col Number:</p> 
 			<input class="number-field" type="number" id="col" name="col" size="4" min="0" step="1" value="1">
 			<button class="button-field" id="display-grid-button" type="button">Display Grid</button>
 			<button class="button-field" id="remove-grid-button" type="button">Remove Grid</button>
@@ -20,23 +27,23 @@
 		</div>
 		
 		<div class="command-display" id="change-grid-color">
-			<p class="text-filed">Color:</p>
+			<p class="text-field">Color:</p>
 			<input class="color-field" type="color" id="active-grid-color" name="active-grid-color" value="#ff0000">
-			<p class="text-filed">Time(sec):</p>
+			<p class="text-field">Time(sec):</p>
 			<input class="number-field" type="number" id="active-grid-time" name="active-grid-time" size="4" min="0" step="0.01" value="0.1">
 			<button class="button-field" id="active-grid-button" type="button">Change To</button> 
 		</div>
 		
 		<div class="command-display" id="change-all-grid-color">
-			<p class="text-filed">Color:</p>
+			<p class="text-field">Color:</p>
 			<input class="color-field" type="color" id="all-grid-color" name="all-grid-color" value="#ff0000">
-			<p class="text-filed">Time(sec):</p>
+			<p class="text-field">Time(sec):</p>
 			<input class="number-field" type="number" id="all-grid-time" name="all-grid-time" size="4" min="0.1" step="0.01" value="0.1">
 			<button class="button-field" id="all-grid-button" type="button">Change All</button>
 		</div>
 		
 		<div class="command-display" id="change-random-grid-color">
-			<p class="text-filed">#Random grids:</p>
+			<p class="text-field">#Random grids:</p>
 			<input class="number-field" type="number" id="random-grid-number" size="4" min="0" step="1" value="1">
 			<button class="button-field" id="random-grid-button" type="button">Change Random</button>
 		</div>

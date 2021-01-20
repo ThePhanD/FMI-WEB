@@ -7,30 +7,36 @@
 	<link type="text/css" rel="stylesheet" href="css/gridStyle.css" />
 </head>
 <body onload="setDisplay()">
-	<p>Choose your color effect.</p>
+	<div class="dashboard-control" id="dashboard-roomname">
+		<p class="text-field-black">Choose your color effect.</p>
+		<p class="text-field-black">Room name: WEB15ED</p>
+		<p class="text-field-black">Music name: ТиЩеИмаш6</p>
+		<p class="text-field-black">Number of people: 0/100</p>
+	</div>
+
 	<div class="dashboard-control" id="dashboard-control">
 		<div class="command-display" id="grid-command">
 			<button class="button-field" id="show-grid-info-button" type="button">Grid Info</button>
 		</div>
 		
 		<div class="command-display" id="change-grid-color">
-			<p class="text-filed">Color:</p>
+			<p class="text-field">Color:</p>
 			<input class="color-field" type="color" id="active-grid-color" name="active-grid-color" value="#ff0000"> <br>
-			<p class="text-filed">Time(sec):</p>
+			<p class="text-field">Time(sec):</p>
 			<input class="number-field" type="number" id="active-grid-time" name="active-grid-time" size="4" min="0" step="0.01" value="0.1"> <br>
 			<button class="button-field" id="active-grid-button" type="button">Change To</button> 
 		</div>
 		
 		<div class="command-display" id="change-all-grid-color">
-			<p class="text-filed">Color:</p>
+			<p class="text-field">Color:</p>
 			<input class="color-field" type="color" id="all-grid-color" name="all-grid-color" value="#ff0000"> <br>
-			<p class="text-filed">Time(sec):</p>
+			<p class="text-field">Time(sec):</p>
 			<input class="number-field" type="number" id="all-grid-time" name="all-grid-time" size="4" min="0.1" step="0.01" value="0.1"> <br>
 			<button class="button-field" id="all-grid-button" type="button">Change All</button> <br>
 		</div>
 		
 		<div class="command-display" id="change-random-grid-color">
-			<p class="text-filed">#Random grids:</p>
+			<p class="text-field">#Random grids:</p>
 			<input class="number-field" type="number" id="random-grid-number" size="4" min="0" step="1" value="1"> <br>
 			<button class="button-field" id="random-grid-button" type="button">Change Random</button> <br>
 		</div>
