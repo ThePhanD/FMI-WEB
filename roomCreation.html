@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 	<meta charset="utf-8">
 	<title>Room Creation</title>
@@ -15,6 +15,7 @@
 		<input type="text" class="input-text" id="music-name" name="music-name">
 		<button class="create-button" id="create-room-button" type="button">Create</button>
 	</div>
+	
 	<div class="dashboard-control" id="dashboard-control">
 		<div class="command-display" id="grid-command">
 			<p class="text-field">Row Number:</p>
@@ -57,13 +58,12 @@
 		</div>
 		
 		<div class="command-display" id="seat-commands">
-			<button class="button-field" id="invalid-seat-button" type="button">Invalid</button> <br>
+			<button class="button-field" id="invalid-seat-button" type="button">Invalid</button>
 			<button class="button-field" id="occupied-seat-button" type="button">Occupied</button>
 			<button class="button-field" id="free-seat-button" type="button">Free</button>
 		</div>
-	</div>
+	</div> <br>
 	
-	<br>
 	<div id="grid-display"></div>
 
 	<script type="text/javascript" src="scripts/gridControl.js"></script>

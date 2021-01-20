@@ -1,65 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Admin Display</title>
-	<link type="text/css" rel="stylesheet" href="css/dashboardControlStyle.css" />
-	<link type="text/css" rel="stylesheet" href="css/gridStyle.css" />
-</head>
-<body onload="setDisplay()">
-	<div class="dashboard-control" id="dashboard-roomname">
-		<p class="text-field-black">Choose your color effect.</p>
-		<p class="text-field-black">Room name: WEB15ED</p>
-		<p class="text-field-black">Music name: ТиЩеИмаш6</p>
-		<p class="text-field-black">Number of people: 0/100</p>
-	</div>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Admin Display</title>
+		<link type="text/css" rel="stylesheet" href="css/dashboardControlStyle.css" />
+		<link type="text/css" rel="stylesheet" href="css/gridStyle.css" />
+	</head>
+	<body onload="setDisplay()">
+		<div class="dashboard-control" id="dashboard-roomname">
+			<p class="text-field-black">Choose your color effect.</p>
+			<p class="text-field-black">Room name: WEB15ED</p>
+			<p class="text-field-black">Music name: ТиЩеИмаш6</p>
+			<p class="text-field-black">Number of people: 0/100</p>
+		</div>
 
-	<div class="dashboard-control" id="dashboard-control">
-		<div class="command-display" id="grid-command">
-			<button class="button-field" id="show-grid-info-button" type="button">Grid Info</button>
-		</div>
+		<div class="dashboard-control" id="dashboard-control">
+			<div class="command-display" id="grid-command">
+				<button class="button-field" id="show-grid-info-button" type="button">Grid Info</button>
+			</div>
+			
+			<div class="command-display" id="change-grid-color">
+				<p class="text-field">Color:</p>
+				<input class="color-field" type="color" id="active-grid-color" name="active-grid-color" value="#ff0000">
+				<p class="text-field">Time(sec):</p>
+				<input class="number-field" type="number" id="active-grid-time" name="active-grid-time" size="4" min="0" step="0.01" value="0.1">
+				<button class="button-field" id="active-grid-button" type="button">Change To</button> 
+			</div>
+			
+			<div class="command-display" id="change-all-grid-color">
+				<p class="text-field">Color:</p>
+				<input class="color-field" type="color" id="all-grid-color" name="all-grid-color" value="#ff0000">
+				<p class="text-field">Time(sec):</p>
+				<input class="number-field" type="number" id="all-grid-time" name="all-grid-time" size="4" min="0.1" step="0.01" value="0.1">
+				<button class="button-field" id="all-grid-button" type="button">Change All</button>
+			</div>
+			
+			<div class="command-display" id="change-random-grid-color">
+				<p class="text-field">#Random grids:</p>
+				<input class="number-field" type="number" id="random-grid-number" size="4" min="0" step="1" value="1">
+				<button class="button-field" id="random-grid-button" type="button">Change Random</button>
+			</div>
+			
+			<div class="command-display" id="spcial-commands">
+				<button class="button-field" id="mexican-wave-button" type="button">Mexican Wave</button>
+				<button class="button-field" id="seiger-button" type="button">Seiger warning</button>
+				<button class="button-field" id="wtf-button" type="button">WTF</button> 
+				<button class="button-field" id="fire-frame-button" type="button">Fire</button> 
+				<button class="button-field" id="grinch-frame-button" type="button">Grinch</button>	
+			</div>
+		</div> <br>
 		
-		<div class="command-display" id="change-grid-color">
-			<p class="text-field">Color:</p>
-			<input class="color-field" type="color" id="active-grid-color" name="active-grid-color" value="#ff0000"> <br>
-			<p class="text-field">Time(sec):</p>
-			<input class="number-field" type="number" id="active-grid-time" name="active-grid-time" size="4" min="0" step="0.01" value="0.1"> <br>
-			<button class="button-field" id="active-grid-button" type="button">Change To</button> 
-		</div>
-		
-		<div class="command-display" id="change-all-grid-color">
-			<p class="text-field">Color:</p>
-			<input class="color-field" type="color" id="all-grid-color" name="all-grid-color" value="#ff0000"> <br>
-			<p class="text-field">Time(sec):</p>
-			<input class="number-field" type="number" id="all-grid-time" name="all-grid-time" size="4" min="0.1" step="0.01" value="0.1"> <br>
-			<button class="button-field" id="all-grid-button" type="button">Change All</button> <br>
-		</div>
-		
-		<div class="command-display" id="change-random-grid-color">
-			<p class="text-field">#Random grids:</p>
-			<input class="number-field" type="number" id="random-grid-number" size="4" min="0" step="1" value="1"> <br>
-			<button class="button-field" id="random-grid-button" type="button">Change Random</button> <br>
-		</div>
-		
-		<div class="command-display" id="spcial-commands">
-			<button class="button-field" id="mexican-wave-button" type="button">Mexican Wave</button> <br>
-			<button class="button-field" id="seiger-button" type="button">Seiger warning</button> <br>
-			<button class="button-field" id="wtf-button" type="button">WTF</button> 
-			<button class="button-field" id="fire-frame-button" type="button">Fire</button> 
-			<button class="button-field" id="grinch-frame-button" type="button">Grinch</button>	
-		</div>
-	</div>
-	
-	<br>
-	<div id="grid-display"></div>
+		<div id="grid-display"></div>
 
-	<script type="text/javascript" src="scripts/colorControl.js"></script> 
-	<script type="text/javascript" src="scripts/colorEffects.js"></script> 
-	<script type="text/javascript" src="scripts/gridControl.js"></script> 
-	<script type="text/javascript" src="scripts/frame.js"></script> 
-	<script type="text/javascript" src="scripts/adminDisplayControl.js"></script> 
-	<script type="text/javascript" src="scripts/special-script/fireFrame.js"></script> 
-	<script type="text/javascript" src="scripts/special-script/grinchFrame.js"></script> 
-	
-</body>
+		<script type="text/javascript" src="scripts/colorControl.js"></script> 
+		<script type="text/javascript" src="scripts/colorEffects.js"></script> 
+		<script type="text/javascript" src="scripts/gridControl.js"></script> 
+		<script type="text/javascript" src="scripts/frame.js"></script> 
+		<script type="text/javascript" src="scripts/adminDisplayControl.js"></script> 
+		<script type="text/javascript" src="scripts/special-script/fireFrame.js"></script> 
+		<script type="text/javascript" src="scripts/special-script/grinchFrame.js"></script> 
+		
+	</body>
 </html>
