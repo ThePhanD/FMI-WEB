@@ -118,7 +118,7 @@
                 $errors[] = "Invalid email format";
             }
 
-            if ($username && $password && $confirm_password && $email) {
+            if (!$errors) {
                 if ($password !== $confirm_password) {
                     $errors[] = "The two passwords don't match";
                 } 
