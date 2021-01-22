@@ -61,8 +61,32 @@ body {
     margin-right: auto;
 }
 
+.exit-button {
+	width: 120px;
+	height: 100&;
+	max-height: 60px;
+	padding: 5px;
+	font-size: 17px;
+	font-weight: 600;
+	background-color: rgba(33, 33, 33, 0.98);
+	color: #ffffff;
+	text-align: center;
+	text-transform: uppercase;
+	text-decoration: none;
+	box-shadow: 0 0 0 1px inset rgba(236, 232, 225, 0.3);
+	position: absolute;
+	top: 30px;
+	left: 1205px;
+}
+
+.exit-button:hover {
+	background-color: #006B38FF;
+	color: #ece8e1;
+}
+
 .testDisplay {
 	position: absolute;
 	top: 145px;
 	left: 1205px;
 }
+

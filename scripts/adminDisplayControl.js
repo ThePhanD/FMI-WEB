@@ -9,3 +9,9 @@ function setAdminRoom() {
 	
 	// Set the room settings
 }
+
+if (document.getElementById("exit-button"))
+	document.getElementById("exit-button").addEventListener("click", exitRoom);
+function exitRoom() {
+	window.location.href = "./dashboard.html";
+}

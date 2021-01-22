@@ -26,3 +26,10 @@ function loopColors(delayTime) {
 function startLoopColors() {
 	loopColors(200);
 }
+
+
+if (document.getElementById("exit-button"))
+	document.getElementById("exit-button").addEventListener("click", exitRoom);
+function exitRoom() {
+	window.location.href = "./dashboard.html";
+}

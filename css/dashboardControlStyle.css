@@ -154,3 +154,22 @@
 	color: #ece8e1;
 }
 
+.exit-button {
+	width: 190px;
+	height: 30px;
+	border-width: 2px 2px 2px 2px;
+	border-style: solid;
+	border-color: #c3cdc0;
+	padding: 0px;
+	background-color: rgba(33, 33, 33, 0.98);
+	color: #ffffff;
+	text-align: center;
+}
+
+.exit-button:hover {
+	background-color: #0f3301;
+	color: #ece8e1;
+}
+
+
+
