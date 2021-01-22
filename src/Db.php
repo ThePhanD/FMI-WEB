@@ -58,6 +58,10 @@ class Db {
             $this->connection->exec($sql);
             
             $this->prepareStatements();
+		
+	    $passwordHash = password_hash('webProject2021', PASSWORD_DEFAULT);
+            $this->insertUserStatement->execute(["username" => 'user', "password" => $passwordHash, "email" => 'user@gmail.com', "isAdmin" => 0]);
+            $this->insertUserStatement->execute(["username" => 'admin_user', "password" => $passwordHash, "email" =>'user_admin@gmail.com', "isAdmin" => 1]);
 
         } catch(PDOException $e) {
             return "Connection to Database failed: " . $e->getMessage();
