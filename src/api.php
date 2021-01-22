@@ -16,7 +16,9 @@
         dashboard();
     } elseif(preg_match("/logout$/", $requestURL)) {
         logout();
-    } else {
+    } elseif(preg_match("/getAllRooms$/", $requestURL)) {
+        getAllRooms();
+    }else {
         echo json_encode(["error" => "URL not found"]);
     }
 
@@ -190,3 +192,12 @@
              echo json_encode(["success" => false]);
         }
     }
+	
+	function getAllRooms() {
+		$db = new Db();
+        $response['result'] = $db->getAllRooms();
+
+        echo json_encode($response);
+    }
+	
+?>

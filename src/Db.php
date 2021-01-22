@@ -11,6 +11,7 @@ class Db {
 
     private $insertRoomStatement;
     private $selectRoomStatement;
+	private $selectAllRoomStatement;
 
     public function __construct() {
 	
@@ -81,6 +82,9 @@ class Db {
 
         $sql = "SELECT * FROM rooms WHERE room_name=:room_name";
         $this->selectRoomStatement =  $this->connection->prepare($sql);
+		
+		$sql = "SELECT * FROM rooms";
+        $this->selectAllRoomStatement = $this->connection->prepare($sql);
 
     }
 
@@ -147,6 +151,31 @@ class Db {
             return ["success" => false, "error" => $e->getMessage()];
         }
     }
+	
+	public function selectAllRoomQuery() {
+        try {
+            $this->selectAllRoomStatement->execute();
+
+            return ["success" => true, "data" => $this->selectAllRoomStatement];
+        } catch(PDOException $e) {
+            return ["success" => false, "error" => $e->getMessage()];
+        }
+    }
+	
+	
+	public function getAllRooms() 
+    {
+		$query = $this->selectAllRoomQuery();
+
+        if ($query["success"]) 
+        {
+			$rooms = $query["data"]->fetchAll(PDO::FETCH_ASSOC);
+			return $rooms;
+        } else {
+			return $query;
+        }
+    }
 
 }
+
 ?>
