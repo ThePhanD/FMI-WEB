@@ -9,6 +9,7 @@
         private $creator;
         private $music;
         private $places;
+        private $isActive;
 
         private $db;
 
@@ -39,6 +40,9 @@
         public function getPlaces() {
             return $this->places;
         }
+        public function getIsActive() {
+            return $this->isActive;
+        }
         public function setCreator($creator) {
             $this->creator = $creator;
         }
@@ -48,17 +52,21 @@
         public function setMusic($music) {
             $this->music = $music;
         }
+        public function setIsActive($isActive) {
+            $this->isActive = $isActive
+        }
 
-        public function createRoom($creator, $music, $places) 
+        public function createRoom($creator, $music, $places, $isActive) 
         {
             $query = $this->db->insertRoomQuery(["room_name" => $this->roomName, "colNumber" => $this->colNumber, "rowNumber" => $this->rowNumber,
-                                                 "creator" => $creator, "music" => $music, "places" => $places]);
+                                                 "creator" => $creator, "music" => $music, "places" => $places, "isActive" => $isActive]);
 
             if ($query["success"]) 
             {
                 $this->creator = $creator;
                 $this->music = $music;
                 $this->places = $places;
+                $this->isActive = $isActive;
 
                 return $query;
             } 
