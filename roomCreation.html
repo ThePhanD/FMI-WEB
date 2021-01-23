@@ -13,7 +13,17 @@
 		<input type="text" class="input-text" id="room-name" name="room-name"/>
 		<p class="text-field-black">Music name:</p>
 		<input type="text" class="input-text" id="music-name" name="music-name">
-		<button class="create-button" id="create-room-button" type="button">Create</button>
+		<button class="command-button" id="save-room-button" type="button">Save</button>
+		<button class="command-button" id="create-room-button" type="button">Create</button>
+	</div>
+	
+	<div class="dashboard-control" id="dashboard-load-room">
+		<p class="text-field-black">Room examples:</p>
+		<select class="select-box" id="room-type" name="room-type">
+			<option value="nan">NAN</option>
+		</select>
+		<button class="command-button" id="load-room-button" type="button">Load Example</button>
+		<button class="command-button" id="update-room-button" type="button">Update Examples</button>
 	</div>
 	
 	<div class="dashboard-control" id="dashboard-control">
@@ -70,6 +80,7 @@
 	<script type="text/javascript" src="scripts/colorControl.js"></script> 
 	<script type="text/javascript" src="scripts/colorEffects.js"></script> 
 	<script type="text/javascript" src="scripts/frame.js"></script> 	
+	<script type="text/javascript" src="scripts/roomUtility.js"></script> 
 	<script type="text/javascript" src="scripts/special-script/fireFrame.js"></script> 
 	<script type="text/javascript" src="scripts/special-script/grinchFrame.js"></script> 
 </body>
