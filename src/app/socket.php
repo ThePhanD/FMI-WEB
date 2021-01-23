@@ -8,7 +8,7 @@ use Ratchet\ConnectionInterface;
 class Socket implements MessageComponentInterface {
 
     protected $mapForUsers=array();
-    protected $mapForClassroom=array();
+    protected $mapForRooms=array();	
 
     public function __construct()
     {
@@ -17,7 +17,7 @@ class Socket implements MessageComponentInterface {
 
 //creates a connection
     public function onOpen(ConnectionInterface $conn) {
-
+		
         // Store the new connection in $this->clients
         $this->clients->attach($conn);
 
@@ -40,35 +40,31 @@ class Socket implements MessageComponentInterface {
 	}
 	
 	private function connect(ConnectionInterface $from,$userID,$data) {
-		$classroomNumber=$data->classroomNumber;
+		$roomName=$data->roomName;
 		$this->mapForUsers[$from->resourceId]=$userID;
-		$this->mapForClassrooms[$userID]=$classroomNumber;
+		$this->mapForRooms[$userID]=$roomName;
 	}
 	
 	private function message(ConnectionInterface $from,$userID,$data) {
-		$color=$data->color;
+		$message=$data->message;
 		$fromUserID=$this->mapForUsers[$from->resourceId];
-		foreach ($this->clients as $client ) {
+		  foreach ($this->clients as $client ) {
 		   $clientUserID=$this->mapForUsers[$client->resourceId];
            if ($from->resourceId == $client->resourceId) {
                continue;
 			}
 		   else {
-			   if($this->mapForClassrooms[$clientUserID] == $this->mapForClassrooms[$fromUserID]) {
-				 $message= array("color" => $color);
-				 $client->send(JSON_encode($message));
+			  if($this->mapForRooms[$clientUserID] == $this->mapForRooms[$fromUserID]) {
+					$toSend= array("message" => $message);
+					$client->send(JSON_encode($toSend));
 			   }
 			}
 		}
 	}
 	
 	private function disconnect(ConnectionInterface $from,$userID,$data) {
-		if (($key = array_search($from->resourceId, $this->mapForUsers)) !== false) {
-			unset($array[$key]);
-		}
-		if (($key = array_search($userID, $this->mapForClassrooms)) !== false) {
-			unset($array[$key]);
-		}
+		unset($this->mapForUsers[$from->resourceId]);
+		unset($this->mapForRooms[$userID]);
 	}
 	
     public function onClose(ConnectionInterface $conn) {
@@ -82,5 +78,4 @@ class Socket implements MessageComponentInterface {
 
         $conn->close();
     }
-	
 }
