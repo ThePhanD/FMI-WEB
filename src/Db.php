@@ -11,13 +11,14 @@ class Db {
 
     private $insertRoomStatement;
     private $selectRoomStatement;
-	private $selectAllRoomStatement;
+    private $selectAllRoomStatement;
+    private $selectActiveRoomsStatement;
 
     public function __construct() {
 	
-	$config = parse_ini_file("../config/config.ini", true); //asoc masiv
+	    $config = parse_ini_file("../config/config.ini", true); //asoc masiv
 	
-	$dbhost = $config['db']['host'];
+	    $dbhost = $config['db']['host'];
         $dbName = $config['db']['name'];
         $userName = $config['db']['user'];
         $userPassword = $config['db']['password']; 
@@ -53,11 +54,19 @@ class Db {
                 colNumber int NOT NULL,
                 creator VARCHAR(32) NOT NULL,
                 music VARCHAR(64) NOT NULL,
-                places VARCHAR(2056) NOT NULL
+                places VARCHAR(2056) NOT NULL,
+                isActive INT(1) NOT NULL
             )";
             $this->connection->exec($sql);
             
             $this->prepareStatements();
+		
+	        $passwordHash = password_hash('webProject2021', PASSWORD_DEFAULT);
+            $this->insertUserStatement->execute(["username" => 'user', "password" => $passwordHash, "email" => 'user@gmail.com', "isAdmin" => 0]);
+            $this->insertUserStatement->execute(["username" => 'admin_user', "password" => $passwordHash, "email" =>'user_admin@gmail.com', "isAdmin" => 1]);
+
+            $this->insertRoomStatement->execute(["room_name" => 'room101', "rowNumber" => 5, "colNumber" => 4, "creator" => 'admin_user',
+                                                 "music" => 'WebIsTheBest', "places" => '11110100111001101101' , "isActive" => 1 ]);
 
         } catch(PDOException $e) {
             return "Connection to Database failed: " . $e->getMessage();
@@ -86,6 +95,8 @@ class Db {
 		$sql = "SELECT * FROM rooms";
         $this->selectAllRoomStatement = $this->connection->prepare($sql);
 
+        $sql = "SELECT * FROM rooms WHERE isActive=:isActive";
+        $this->selectActiveRoomsStatement = $this->connection->prepare($sql);
     }
 
     public function insertUserQuery($data) {
@@ -109,6 +120,7 @@ class Db {
             return ["success" => false, "error" => $e->getMessage()];
         }
     }
+
     public function selectUserByEmailQuery($data) {
         try {
             // ["email" => "..."]
@@ -161,16 +173,36 @@ class Db {
             return ["success" => false, "error" => $e->getMessage()];
         }
     }
+    
+    public function selectAllActiveRoomQuery() {
+        try {
+            $this->selectActiveRoomsStatement->execute();
+
+            return ["success" => true, "data" => $this->selectActiveRoomsStatement];
+        } catch(PDOException $e) {
+            return ["success" => false, "error" => $e->getMessage()];
+        }
+    }
 	
-	
-	public function getAllRooms() 
-    {
+	public function getAllRooms() {
 		$query = $this->selectAllRoomQuery();
 
         if ($query["success"]) 
         {
 			$rooms = $query["data"]->fetchAll(PDO::FETCH_ASSOC);
 			return $rooms;
+        } else {
+			return $query;
+        }
+    }
+
+    public function getAllActiveRooms() {
+        $query = $this->selectAllActiveRoomQuery();
+
+        if ($query["success"]) 
+        {
+			$activeRooms = $query["data"]->fetchAll(PDO::FETCH_ASSOC);
+			return $activeRooms;
         } else {
 			return $query;
         }

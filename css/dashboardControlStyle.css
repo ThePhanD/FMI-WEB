@@ -138,7 +138,7 @@
 	border-color: #79a06b;
 }
 
-.create-button {
+.command-button {
 	width: 190px;
 	height: 30px;
 	border-width: 2px 2px 2px 2px;
@@ -149,7 +149,7 @@
 	color: #ffffff;
 }
 
-.create-button:hover {
+.command-button:hover {
 	background-color: #0f3301;
 	color: #ece8e1;
 }
@@ -171,5 +171,18 @@
 	color: #ece8e1;
 }
 
-
-
+.select-box {
+	width: 200px;
+	max-height: 35px;
+	padding: 5px;
+	font-size: 12px;
+	font-weight: 600;
+	background-color: rgba(33, 33, 33, 0.98);
+	color: #ffffff;
+	text-align: center;
+	text-transform: uppercase;
+	text-decoration: none;
+	box-shadow: 0 0 0 1px inset rgba(236, 232, 225, 0.3);
+	position: relative;
+	margin: 1px;
+}
