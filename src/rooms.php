@@ -14,7 +14,7 @@
 
         public function __construct($roomName, $rowNumber, $colNumber) {
 
-            $this->roomName = $roomNumber;
+            $this->roomName = $roomName;
             $this->rowNumber = $rowNumber;
             $this->colNumber = $colNumber;
 
@@ -85,5 +85,4 @@
             }
         }
     }
-
 ?>

@@ -1,4 +1,5 @@
 <?php
+	require_once "rooms.php";
     require_once "users.php";
     require_once "utility.php";
 
@@ -18,7 +19,11 @@
         logout();
     } elseif(preg_match("/getAllRooms$/", $requestURL)) {
         getAllRooms();
-    }else {
+    } elseif(preg_match("/roomNameExits$/", $requestURL)) {
+        roomNameExits();
+    } elseif(preg_match("/saveRoom$/", $requestURL)) {
+        saveRoom();
+    } else {
         echo json_encode(["error" => "URL not found"]);
     }
 
@@ -199,5 +204,67 @@
 
         echo json_encode($response);
     }
+	
+	function roomNameExits() {
+		$errors = [];
+        $response = [];
+		
+		if ($_POST) {
+            $data = json_decode($_POST["data"], true);
+			
+            $roomName = testInput($data["roomName"]);
+			$rowNumber = testInput($data["rowNumber"]);
+			$colNumber = testInput($data["colNumber"]);
+            
+            $room = new Room($roomName, $rowNumber, $colNumber); 
+            $roomNameUsed = $room->roomExists();
+                   
+            if($roomNameUsed) {
+				$errors[] = "This room name already exists!";
+			} 
+        } 
+        else {
+            $errors[] = "Invalid request";
+        }
+
+        if($errors) {
+            $response = ["success" => true, "error" => $errors];
+        } else {
+            $response = ["success" => false];
+        }
+		
+		
+		echo json_encode($response);
+	}
+	
+	function saveRoom() {
+		$errors = [];
+        $response = [];
+		
+		if ($_POST) {
+            $data = json_decode($_POST["data"], true);
+			
+            $roomName = testInput($data["roomName"]);
+			$rowNumber = testInput($data["rowNumber"]);
+			$colNumber = testInput($data["colNumber"]);
+			$creator = testInput($data["creator"]);
+			$music = testInput($data["music"]);
+			$places = testInput($data["places"]);
+            
+            $room = new Room($roomName, $rowNumber, $colNumber); 
+            $room->createRoom($creator, $music, $places);
+        } 
+        else {
+            $errors[] = "Invalid request";
+        }
+
+        if($errors) {
+            $response = ["success" => "The room is not saved!", "error" => $errors];
+        } else {
+            $response = ["success" => "The room is saved!"];
+        }
+		
+		echo json_encode($response);
+	}
 	
 ?>
