@@ -32,8 +32,7 @@
         $response = [];
         $user;
 
-        if ($_POST) 
-        {
+        if ($_POST) {
             $data = json_decode($_POST["data"], true);
 
             $username = isset($data["username"]) ? testInput($data["username"]) : "";
@@ -47,8 +46,8 @@
                 $errors[] = "You should input password";
             }
 
-            if ($username && $password) 
-            {
+            if ($username && $password)  {
+
                 $user = new User($username, $password); 
                 $isUserValid = $user->isValid(); //dali imame takuv potrebitel i parolata mu e vqrna
 
@@ -60,6 +59,7 @@
 
                     $expires = time() + 60 * 60 * 24;
                     setcookie("isAdmin", $isAdmin, $expires, "/" );
+                    setcookie("user" , $username, $expires, "/"); //cookie za imeto na potrebitelq - user
                 } 
                 else {
                     $errors[] = $isUserValid["error"];
@@ -190,6 +190,7 @@
             session_destroy();
 
             setcookie("isAdmin", "", time() - 60, "/");
+            setcookie("user" , "", time() - 60, "/");
     
             echo json_encode(["success" => true]);
         } 
