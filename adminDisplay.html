@@ -6,12 +6,13 @@
 		<link type="text/css" rel="stylesheet" href="css/dashboardControlStyle.css" />
 		<link type="text/css" rel="stylesheet" href="css/gridStyle.css" />
 	</head>
-	<body onload="setDisplay()">
+	<!-- <body onload="setDisplay()"> -->
+	<body>
 		<div class="dashboard-control" id="dashboard-roomname">
 			<p class="text-field-black">Choose your color effect.</p>
-			<p class="text-field-black">Room name: WEB15ED</p>
-			<p class="text-field-black">Music name: ТиЩеИмаш6</p>
-			<p class="text-field-black">Number of people: 0/100</p>
+			<p class="text-field-black" id="room-name">Room name: WEB15ED</p>
+			<p class="text-field-black" id="music-name">Music name: ТиЩеИмаш6</p>
+			<p class="text-field-black" id="number-people">Number of people: 0/100</p>
 			<button class="exit-button" id="exit-button">Close Room</button>
 		</div>
 
@@ -53,10 +54,12 @@
 		
 		<div id="grid-display"></div>
 
+		<script type="text/javascript" src="scripts/sockets.js"></script> 
 		<script type="text/javascript" src="scripts/colorControl.js"></script> 
 		<script type="text/javascript" src="scripts/colorEffects.js"></script> 
 		<script type="text/javascript" src="scripts/gridControl.js"></script> 
 		<script type="text/javascript" src="scripts/frame.js"></script> 
+		<script type="text/javascript" src="scripts/getCookieValue.js"></script>
 		<script type="text/javascript" src="scripts/adminDisplayControl.js"></script> 
 		<script type="text/javascript" src="scripts/special-script/fireFrame.js"></script> 
 		<script type="text/javascript" src="scripts/special-script/grinchFrame.js"></script> 
