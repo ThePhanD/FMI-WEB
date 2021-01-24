@@ -13,6 +13,8 @@ class Db {
     private $selectRoomStatement;
     private $selectAllRoomStatement;
     private $selectActiveRoomsStatement;
+	private $selectExampleRoomsStatement;
+	private $selectCreatorRoomStatement;
 
     public function __construct() {
 	
@@ -96,8 +98,14 @@ class Db {
 		$sql = "SELECT * FROM rooms";
         $this->selectAllRoomStatement = $this->connection->prepare($sql);
 
-        $sql = "SELECT * FROM rooms WHERE isActive=:isActive";
+        $sql = "SELECT * FROM rooms WHERE isActive=1";
         $this->selectActiveRoomsStatement = $this->connection->prepare($sql);
+		
+		$sql = "SELECT * FROM rooms WHERE isActive=0";
+        $this->selectExampleRoomsStatement = $this->connection->prepare($sql);
+		
+		$sql = "SELECT * FROM rooms WHERE creator=:creator AND isActive=:isActive";
+        $this->selectCreatorRoomStatement = $this->connection->prepare($sql);
     }
 
     public function insertUserQuery($data) {
@@ -185,6 +193,16 @@ class Db {
         }
     }
 	
+	public function selectAllExampleRoomQuery() {
+        try {
+            $this->selectExampleRoomsStatement->execute();
+
+            return ["success" => true, "data" => $this->selectExampleRoomsStatement];
+        } catch(PDOException $e) {
+            return ["success" => false, "error" => $e->getMessage()];
+        }
+    }
+	
 	public function getAllRooms() {
 		$query = $this->selectAllRoomQuery();
 
@@ -208,7 +226,40 @@ class Db {
 			return $query;
         }
     }
+	
+	public function getAllExampleRooms() {
+        $query = $this->selectAllExampleRoomQuery();
 
+        if ($query["success"]) 
+        {
+			$exampleRooms = $query["data"]->fetchAll(PDO::FETCH_ASSOC);
+			return $exampleRooms;
+        } else {
+			return $query;
+        }
+    }
+	
+	public function selectCreatorActiveRoomQuery($data) {
+        try {
+            $this->selectCreatorRoomStatement->execute($data);;
+
+            return ["success" => true, "data" => $this->selectCreatorRoomStatement];
+        } catch(PDOException $e) {
+            return ["success" => false, "error" => $e->getMessage()];
+        }
+    }
+	
+	public function getCreatorActiveRoom($data) {
+        $query = $this->selectCreatorActiveRoomQuery($data);;
+
+        if ($query["success"]) 
+        {
+			$room = $query["data"]->fetch(PDO::FETCH_ASSOC);
+			return $room;
+        } else {
+			return $query;
+        }
+    }
 }
 
 ?>

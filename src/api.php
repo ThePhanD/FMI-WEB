@@ -17,8 +17,12 @@
         dashboard();
     } elseif(preg_match("/logout$/", $requestURL)) {
         logout();
-    } elseif(preg_match("/getAllRooms$/", $requestURL)) {
-        getAllRooms();
+    } elseif(preg_match("/getAllActiveRooms$/", $requestURL)) {
+        getAllActiveRooms();
+    } elseif(preg_match("/getAllExampleRooms$/", $requestURL)) {
+        getAllExampleRooms();
+    } elseif(preg_match("/getCreatorActiveRoom$/", $requestURL)) {
+        getCreatorActiveRoom();
     } elseif(preg_match("/roomNameExits$/", $requestURL)) {
         roomNameExits();
     } elseif(preg_match("/saveRoom$/", $requestURL)) {
@@ -199,9 +203,16 @@
         }
     }
 	
-	function getAllRooms() {
+	function getAllActiveRooms() {
 		$db = new Db();
-        $response['result'] = $db->getAllRooms();
+        $response['result'] = $db->getAllActiveRooms();
+
+        echo json_encode($response);
+    }
+	
+	function getAllExampleRooms() {
+		$db = new Db();
+        $response['result'] = $db->getAllExampleRooms();
 
         echo json_encode($response);
     }
@@ -251,9 +262,10 @@
 			$creator = testInput($data["creator"]);
 			$music = testInput($data["music"]);
 			$places = testInput($data["places"]);
+			$isActive = testInput($data["isActive"]);
             
             $room = new Room($roomName, $rowNumber, $colNumber); 
-            $room->createRoom($creator, $music, $places);
+            $room->createRoom($creator, $music, $places, $isActive);
         } 
         else {
             $errors[] = "Invalid request";
@@ -263,6 +275,26 @@
             $response = ["success" => "The room is not saved!", "error" => $errors];
         } else {
             $response = ["success" => "The room is saved!"];
+        }
+		
+		echo json_encode($response);
+	}
+	
+	function getCreatorActiveRoom() {
+		$errors = [];
+        $response = [];
+		
+		if ($_POST) {
+            $data = json_decode($_POST["data"], true);
+			$db = new Db();
+			$response['result'] = $db->getCreatorActiveRoom($data);
+        } 
+        else {
+            $errors[] = "Invalid request";
+        }
+
+        if($errors) {
+            $response = ["success" => false, "error" => $errors];
         }
 		
 		echo json_encode($response);
