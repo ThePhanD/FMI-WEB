@@ -53,7 +53,7 @@
             $this->music = $music;
         }
         public function setIsActive($isActive) {
-            $this->isActive = $isActive
+            $this->isActive = $isActive;
         }
 
         public function createRoom($creator, $music, $places, $isActive) 
