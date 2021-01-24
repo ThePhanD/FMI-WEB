@@ -40,7 +40,6 @@ function activateMexicanWave() {
 	
 	var increase = parseInt(255 / cols );
 	var multiply = parseInt((rows + cols) * 50 / 100);
-	
 	var frequency = 0.3;
 	
 	function myLoop() {

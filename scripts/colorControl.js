@@ -28,7 +28,7 @@ function sendColorTo(toIndex, color) {
 function changeColorGrid(index, color, time){
 	var grid = document.getElementById('grid-item-' + index);
 	grid.style.backgroundColor = color;
-	sendColorTo(index, color)
+	sendColorTo(index, color);
 	
 	setTimeout(function(){
 		grid.style.backgroundColor = '';
