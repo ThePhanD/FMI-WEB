@@ -86,7 +86,8 @@ class Db {
         $sql = "SELECT * FROM users WHERE userid=:userid";
         $this->selectUserByIdStatement =  $this->connection->prepare($sql);
 
-        $sql = "INSERT INTO rooms(room_name, rowNumber, colNumber, creator, music, places) VALUES (:room_name, :rowNumber, :colNumber, :creator, :music, :places)";
+        $sql = "INSERT INTO rooms(room_name, rowNumber, colNumber, creator, music, places, isActive) 
+					VALUES (:room_name, :rowNumber, :colNumber, :creator, :music, :places, :isActive)";
         $this->insertRoomStatement =  $this->connection->prepare($sql);
 
         $sql = "SELECT * FROM rooms WHERE room_name=:room_name";
