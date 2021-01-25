@@ -106,13 +106,13 @@
             if(strlen($password) < 6) {
                 $errors[] = "Your password must contain at least 8 characters!";
             }
-            if(!preg_match("/[0-9]+/",$password)) {
+            if(!preg_match("/[0-9]+/", $password)) {
                 $errors[] = "Your password must contain at least 1 number!";
             }
-            if(!preg_match("/[A-Z]+/",$password)) {
+            if(!preg_match("/[A-Z]+/", $password)) {
                 $errors[] = "Your password must contain at least 1 capital letter!";
             }
-            if(!preg_match("/[a-z]+/",$password)) {
+            if(!preg_match("/[a-z]+/", $password)) {
                 $errors[] = "your password must contain at least 1 lowercase letter!";
             }
 
@@ -153,7 +153,7 @@
                     if(!$usernameUsed && !$emailUsed) {
                         $passwordHash = password_hash($password, PASSWORD_DEFAULT); //heshirane na parolata
                         $isAdmin = $user->getIsAdmin();
-                        $user->createUser($passwordHash, $email,$isAdmin); //suzdavane na nov potrebitel 
+                        $user->createUser($passwordHash, $email, $isAdmin); //suzdavane na nov potrebitel 
                     }
                 }
             }
@@ -166,97 +166,96 @@
             $response = ["success" => false, "error" => $errors];
         } else {
             $response = ["success" => true]; //echo "User is successfully registered!";
-        }
+		}
 
-        echo json_encode($response);
-    }
+		echo json_encode($response);
+	}
 
-    function dashboard() {
-        $response = [];
+	function dashboard() {
+		$response = [];
 
-        if($_SESSION) {
-            if($_SESSION["username"]) {
-                $response = ["success" => true, "data" => $_SESSION["username"]]; //moje da se sloji v data $_SESSION["isAdmin"] ??
-            } else {
-                $response = ["success" => false, "error" => "Unauthorized access"];
-            }
-        } 
-        else {
-            $response = ["success" => false, "error" => "Session expired"];
-        }
+		if($_SESSION) {
+			if($_SESSION["username"]) {
+				$response = ["success" => true, "data" => $_SESSION["username"]]; //moje da se sloji v data $_SESSION["isAdmin"] ??
+			} else {
+				$response = ["success" => false, "error" => "Unauthorized access"];
+			}
+		} 
+		else {
+			$response = ["success" => false, "error" => "Session expired"];
+		}
 
-        echo json_encode($response);
-    }
+		echo json_encode($response);
+	}
 
-    function logout() {
-        if ($_SESSION) {
-            session_unset();
-            session_destroy();
+	function logout() {
+		if ($_SESSION) {
+			session_unset();
+			session_destroy();
 
-            setcookie("isAdmin", "", time() - 60, "/");
-            setcookie("user" , "", time() - 60, "/");
+			setcookie("isAdmin", "", time() - 60, "/");
+			setcookie("user" , "", time() - 60, "/");
     
-            echo json_encode(["success" => true]);
-        } 
-        else {
-             echo json_encode(["success" => false]);
-        }
-    }
+			echo json_encode(["success" => true]);
+		} 
+		else {
+			echo json_encode(["success" => false]);
+		}
+	}
 	
 	function getAllActiveRooms() {
 		$db = new Db();
-        $response['result'] = $db->getAllActiveRooms();
+		$response['result'] = $db->getAllActiveRooms();
 
-        echo json_encode($response);
-    }
+		echo json_encode($response);
+	}
 	
 	function getAllExampleRooms() {
 		$db = new Db();
-        $response['result'] = $db->getAllExampleRooms();
+		$response['result'] = $db->getAllExampleRooms();
 		
-        echo json_encode($response);
-    }
+		echo json_encode($response);
+	}
 	
 	function roomNameExits() {
 		$errors = [];
-        $response = [];
+		$response = [];
 		
 		if ($_POST) {
-            $data = json_decode($_POST["data"], true);
+			$data = json_decode($_POST["data"], true);
 			
-            $roomName = testInput($data["roomName"]);
+			$roomName = testInput($data["roomName"]);
 			$rowNumber = testInput($data["rowNumber"]);
 			$colNumber = testInput($data["colNumber"]);
             
-            $room = new Room($roomName, $rowNumber, $colNumber); 
-            $roomNameUsed = $room->roomExists();
+			$room = new Room($roomName, $rowNumber, $colNumber); 
+			$roomNameUsed = $room->roomExists();
                    
-            if($roomNameUsed) {
+			if($roomNameUsed) {
 				$errors[] = "This room name already exists!";
 			} 
-        } 
-        else {
-            $errors[] = "Invalid request";
-        }
+		} 
+		else {
+			$errors[] = "Invalid request";
+		}
 
-        if($errors) {
+		if($errors) {
             $response = ["success" => true, "error" => $errors];
-        } else {
-            $response = ["success" => false];
-        }
-		
+		} else {
+			$response = ["success" => false];
+		}
 		
 		echo json_encode($response);
 	}
 	
 	function saveRoom() {
 		$errors = [];
-        $response = [];
+		$response = [];
 		
 		if ($_POST) {
-            $data = json_decode($_POST["data"], true);
+			$data = json_decode($_POST["data"], true);
 			
-            $roomName = testInput($data["roomName"]);
+			$roomName = testInput($data["roomName"]);
 			$rowNumber = testInput($data["rowNumber"]);
 			$colNumber = testInput($data["colNumber"]);
 			$creator = testInput($data["creator"]);
@@ -264,18 +263,18 @@
 			$places = testInput($data["places"]);
 			$isActive = testInput($data["isActive"]);
             
-            $room = new Room($roomName, $rowNumber, $colNumber); 
-            $room->createRoom($creator, $music, $places, $isActive);
-        } 
-        else {
-            $errors[] = "Invalid request";
-        }
+			$room = new Room($roomName, $rowNumber, $colNumber); 
+			$room->createRoom($creator, $music, $places, $isActive);
+		} 
+		else {
+			$errors[] = "Invalid request";
+		}
 
-        if($errors) {
-            $response = ["success" => "The room is not saved!", "error" => $errors];
-        } else {
-            $response = ["success" => "The room is saved!"];
-        }
+		if($errors) {
+			$response = ["success" => "The room is not saved!", "error" => $errors];
+		} else {
+			$response = ["success" => "The room is saved!"];
+		}
 		
 		echo json_encode($response);
 	}

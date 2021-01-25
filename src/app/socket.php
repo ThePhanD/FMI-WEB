@@ -11,38 +11,39 @@ use Ratchet\ConnectionInterface;
 
 class Socket implements MessageComponentInterface {
 
-    protected $connToRoom=array();
+	protected $connToRoom=array();
 	protected $connToSeat=array();
 	protected $roomToAdminConn=array();
 	protected $db;
 
-    public function __construct()
-    {
-        $this->clients = new \SplObjectStorage;
+	public function __construct()
+	{
+		$this->clients = new \SplObjectStorage;
 		$this->db = new Db();
     }
 
 //creates a connection
-    public function onOpen(ConnectionInterface $conn) {
+	public function onOpen(ConnectionInterface $conn) {
 		
-        // Store the new connection in $this->clients
-        $this->clients->attach($conn);
+		// Store the new connection in $this->clients
+		$this->clients->attach($conn);
 
-        echo "New connection! ({$conn->resourceId})\n";
+		echo "New connection! ({$conn->resourceId})\n";
     }
 
 //sending a message in JSON
-    public function onMessage(ConnectionInterface $from, $msg) {
+	public function onMessage(ConnectionInterface $from, $msg) {
 		$data = JSON_decode($msg);
 		$type=$data->type;
 		$user=$data->user;
-		$valid_functions = ['connect','message','disconnect'];
+		$valid_functions = ['sendToAllRoom', 'connect', 'message', 'disconnect'];
+		
 		if(in_array($type,$valid_functions)) {
 			$functionName = $type;
 			$this->$functionName($from,$user,$data);
-			}
+		}
 		else {
-			$from->send("INVALID REQUEST");
+		$from->send("INVALID REQUEST");
 		}
 	}
 	
@@ -95,8 +96,7 @@ class Socket implements MessageComponentInterface {
 		$client->send($encoded_data);
 	}
 	
-	
-	private function connect(ConnectionInterface $from,$user,$data) {
+	private function connect(ConnectionInterface $from, $user, $data) {
 		$roomName=$data->roomName;
 		$isAdmin=$data->isAdmin == "yes";
 		echo "Room name: {$roomName} \n";
@@ -121,7 +121,7 @@ class Socket implements MessageComponentInterface {
 		
 		// Choose next seat
 		$freeSeat = "1";
-		$takenSeat = "0";
+		$takenSeat = "2";
 		for($seat = 0; $seat < count($seats); $seat++) {
 			if($seats[$seat] == $freeSeat) {
 				break;
@@ -173,13 +173,13 @@ class Socket implements MessageComponentInterface {
 			if ($this->connToRoom[$client->resourceId] != $roomName) {
 				continue;
 			}
-			$this->disconnect($client, null, null);
-			$msg = array("type" => "roomDisconnect", "room_name" => $roomName);
+
+			$msg = array("type" => "roomDisconnect");
 			$client->send(JSON_encode($msg));
 		}
 	}
 	
-	private function disconnect(ConnectionInterface $from,$user,$data) {
+	private function disconnect(ConnectionInterface $from, $user, $data) {
 		echo "Received disconnect message \n";
 		$roomName = $this->connToRoom[$from->resourceId];
 		$seats = array();
@@ -189,7 +189,6 @@ class Socket implements MessageComponentInterface {
 			$seat = $this->connToSeat[$from->resourceId];
 			unset($this->connToSeat[$from->resourceId]);
 			
-			
 			$roomData = $this->db->selectRoomQuery(array("room_name" => $roomName))["data"]->fetch(PDO::FETCH_ASSOC);
 			$places = $roomData["places"];
 			$seats = str_split($places);
@@ -197,15 +196,16 @@ class Socket implements MessageComponentInterface {
 			$seats[$seat] = $freeSeat;
 			$newPlaces = implode($seats);
 			echo $newPlaces;
-			$this->db->updateRoomsQuery(array("places" =>$newPlaces, "room_name" => $roomName));
+			$this->db->updateRoomsQuery(array("places" => $newPlaces, "room_name" => $roomName));
 			
 			echo "Removed seat {$seat} \n";
 		}
 		if (array_key_exists($roomName, $this->roomToAdminConn)) {
 			$adminRes = $this->roomToAdminConn[$roomName];
 			if ($from->resourceId == $adminRes) {
-				unset($this->roomToAdminConn[$roomName]);
 				$this->disconnectRoom($roomName);
+				unset($this->roomToAdminConn[$roomName]);
+				$this->db->deleteRoomQuery(array("room_name" => $roomName));
 			} else {
 				// Subtract one for what we're currently removing.
 				$this->updateAdminNumbers($roomName, $seats);

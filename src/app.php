@@ -8,11 +8,11 @@ require dirname( __FILE__ ) . '/vendor/autoload.php';
 require "app/socket.php";
 
 $server = IoServer::factory(
-    new HttpServer(
-        new WsServer(
-            new Socket()
-        )
-    ),
-    8080
+	new HttpServer(
+		new WsServer(
+			new Socket()
+		)
+	),
+	8080
 );
 $server->run();
