@@ -36,7 +36,7 @@ class Socket implements MessageComponentInterface {
 		$data = JSON_decode($msg);
 		$type=$data->type;
 		$user=$data->user;
-		$valid_functions = ['sendToAllRoom','connect','message','disconnect'];
+		$valid_functions = ['connect','message','disconnect'];
 		if(in_array($type,$valid_functions)) {
 			$functionName = $type;
 			$this->$functionName($from,$user,$data);
@@ -95,15 +95,13 @@ class Socket implements MessageComponentInterface {
 		$client->send($encoded_data);
 	}
 	
-	function sendToAllRoom(ConnectionInterface $from,$user,$data) {
-		$room = $data->room;
+	function sendToAllRoom($data) {
+		$room=$data["room"];
 		foreach ($this->clients as $client ) {
-           if ($from->resourceId == $client->resourceId) {
-               continue;
-		   }
 		   $adminRes = $this->roomToAdminConn[$room];
-		   if($from->resourceId == $adminRes && $this->connToRoom[$from->resourceId] == $this->connToRoom[$client->resourceId]) {
-				$this->sendMess($client,$message);
+		   if($client->resourceId !=$adminRes &&$this->connToRoom[$from->resourceId] == $this->connToRoom[$client->resourceId]) {
+				$msg=JSON_encode($data);
+				$client->send($msg);
 		   }
 		}
 	}
