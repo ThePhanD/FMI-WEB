@@ -43,7 +43,6 @@ class Socket implements MessageComponentInterface {
 			}
 		else {
 			$from->send("INVALID REQUEST");
-<<<<<<< HEAD
 		}
 	}
 	
@@ -97,71 +96,6 @@ class Socket implements MessageComponentInterface {
 	}
 	
 	
-=======
-		}
-	}
-	
-	private function updateAdminNumbers($roomName, $seats) {
-		$freeSeat = '1';
-		$count = 0;
-		for($seat = 0; $seat < count($seats); $seat++) {
-			if($seats[$seat] == $freeSeat) {
-				$count++;
-			}
-		}
-		$currentCnt = 0;
-		foreach ($this->clients as $client) {
-			if (!array_key_exists($client->resourceId, $this->connToRoom)) {
-				continue;
-			}
-			if ($this->connToRoom[$client->resourceId] == $roomName) {
-				$currentCnt++;
-			}
-		}
-		if (!array_key_exists($roomName, $this->roomToAdminConn)) {
-			return;
-		}
-		$currentCnt--;
-		$totalCnt = $currentCnt + $count;
-		$data = array("type" => "numberMessage", "current" => $currentCnt, "total" => $totalCnt, "places" => implode($seats));
-		$adminResId = $this->roomToAdminConn[$roomName];
-		$encoded_data = JSON_encode($data);
-		echo "Sending {$encoded_data} to {$adminResId} \n";
-		foreach ($this->clients as $client) {
-			if ($client->resourceId == $adminResId) {
-				$client->send($encoded_data);
-				break;
-			}
-		}
-	}
-	
-	private function sendSeatNumber($client, $seat) {
-		$seat += 1; // 0 to 1 based indexing.
-		$data = array("type" => "seatMessage", "seatNumber" => $seat);
-		$encoded_data = JSON_encode($data);
-		echo "Sending {$encoded_data} \n";
-		$client->send($encoded_data);
-	}
-	
-	private function sendRoomFull($client) {
-		$data = array("type" => "roomFull");
-		$encoded_data = JSON_encode($data);
-		echo "Sending {$encoded_data} \n";
-		$client->send($encoded_data);
-	}
-	
-	function sendToAllRoom($data) {
-		$room=$data["room"];
-		foreach ($this->clients as $client ) {
-		   $adminRes = $this->roomToAdminConn[$room];
-		   if($client->resourceId !=$adminRes &&$this->connToRoom[$from->resourceId] == $this->connToRoom[$client->resourceId]) {
-				$msg=JSON_encode($data);
-				$client->send($msg);
-		   }
-		}
-	}
-	
->>>>>>> 9797edad5030d53c511c126d202b22d856cc05cc
 	private function connect(ConnectionInterface $from,$user,$data) {
 		$roomName=$data->roomName;
 		$isAdmin=$data->isAdmin == "yes";
@@ -228,7 +162,6 @@ class Socket implements MessageComponentInterface {
 			  (!isset($seats) || in_array($seat, $seats))) {
 				$this->sendMess($client,$message);
 		   }
-<<<<<<< HEAD
 		}
 	}
 	
@@ -246,12 +179,6 @@ class Socket implements MessageComponentInterface {
 		}
 	}
 	
-=======
-		}
-	}
-	
-	
->>>>>>> 9797edad5030d53c511c126d202b22d856cc05cc
 	private function disconnect(ConnectionInterface $from,$user,$data) {
 		echo "Received disconnect message \n";
 		$roomName = $this->connToRoom[$from->resourceId];
@@ -278,10 +205,7 @@ class Socket implements MessageComponentInterface {
 			$adminRes = $this->roomToAdminConn[$roomName];
 			if ($from->resourceId == $adminRes) {
 				unset($this->roomToAdminConn[$roomName]);
-<<<<<<< HEAD
 				$this->disconnectRoom($roomName);
-=======
->>>>>>> 9797edad5030d53c511c126d202b22d856cc05cc
 			} else {
 				// Subtract one for what we're currently removing.
 				$this->updateAdminNumbers($roomName, $seats);

@@ -74,14 +74,7 @@
 				setNumbers(curr, total);
 		    } else if (mesType == "roomFull") {
 				handleFullRoom();
-<<<<<<< HEAD
 			} else if (mesType == "roomDisconnect") {
 				window.location.href = "./dashboard.html";
 			}
-=======
-		} else if (mestype == "sendToAllRoom") {
-				//console.log(data["message"]);
-				//kakvo shte se izpulni
-		}
->>>>>>> 9797edad5030d53c511c126d202b22d856cc05cc
 		}
