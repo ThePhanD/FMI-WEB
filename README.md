@@ -1,2 +1,0 @@
-# FMI-WEB
-WEB project
