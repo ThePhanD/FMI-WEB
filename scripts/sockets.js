@@ -31,8 +31,8 @@
 		}
 		
 				
-		function sendToAll(user,room,message) {
-			data = {type: 'sendToAllRoom', user:user, room:room, message:message};
+		function sendToAllInRoom(user,room,message) {
+			data = {type: 'sendToAllRoom', room:room, message:message};
 			sendMsg(data);
 		}
 		
