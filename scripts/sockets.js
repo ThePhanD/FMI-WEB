@@ -1,4 +1,5 @@
-		var socket = new WebSocket('ws://localhost:8080');
+		socket = new WebSocket('ws://localhost:8080');
+
 		
 		socket.onopen = function(e) {
 			console.log("Connection established!");
@@ -9,41 +10,63 @@
 		};
 		
 		var sendMsg = function(obj) {
+			jsonObj = JSON.stringify(obj);
+			console.log(jsonObj);
 			socket.send(JSON.stringify(obj));
 		};
 		
-		function sendMessageToUser(user, roomName, message) {
-            data = {type:'message', userID:user , message:message, roomName:roomName};
+		function sendMessageToUser(user, message, seats) {
+            data = {type:'message', user:user, message:message, seats:seats};
+			sendMsg(data);
+		}
+		
+		function seatedMessage(seatNumber) {
+			data = {type:'seatMessage', seatNumber:seatNumber};
+			sendMsg(data);
+		}
+		
+		function numberMessage(currentCnt,totalCnt) {
+			data = {type: 'numberMessage', current:currentCnt, total:totalCnt};
 			sendMsg(data);
 		}
 		
 		function connectToRoom(user, roomName, is_admin) {
 			
 			if(is_admin == 1) {
-				data = {type:'connect', userID:user, roomName:roomName};
+				data = {type:'connect', user:user, roomName:roomName, isAdmin:"yes"};
 				sendMsg(data);
-				//console.log(data);
+				console.log(data);
 			}
 			else {
-				data = {type:'connect',userID: user, roomName: roomName};
+				data = {type:'connect',user: user, roomName: roomName, isAdmin:"no"};
 				sendMsg(data);
-				//console.log(data);
 			}
 		}
 
 		function disconnectFromRoom(user,roomName){
-			data = {type:'disconnect', userID:user, roomName:roomName};
+			data = {type:'disconnect', user:user, roomName:roomName};
 			sendMsg(data);
-			console.log(data);
 		}
 			
-		function changeColor(color) {
-			document.body.style.background = color;
-		} 
 		
 		socket.onmessage = function(e) {
 			console.log(e.data);
-			var color = JSON.parse(e.data)["message"];
-			console.log(color);
-			//changeColor(color);
+			data = JSON.parse(e.data);
+			mesType = data["type"];
+			if (mesType == "message") {
+				var color = data["message"];
+				console.log(color);
+				changeToColor(color);
+			} else if (mesType == "seatMessage") {
+				var seat =  data["seatNumber"];
+				setSeat(seat);
+		    } else if (mesType == "numberMessage") {
+				var curr = data["current"];
+				var total = data["total"];
+				var places = data["places"];
+				setPlaces(places);
+				setNumbers(curr, total);
+		    } else if (mesType == "roomFull") {
+				handleFullRoom();
+			}
 		}
