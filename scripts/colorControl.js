@@ -16,14 +16,15 @@ function getRandomColor(n, frequency) {
 }
 
 function sendColorTo(toIndex, color) {
-	var occupied = "red";
-	var grid = 'grid-item-' + toIndex;
-	var gridColor = document.getElementById(grid).getAttribute('color');
-	if ( gridColor == occupied) {
+	//var occupied = "red";
+	//var grid = 'grid-item-' + toIndex;
+	//var gridColor = document.getElementById(grid).getAttribute('color');
+	//if ( gridColor == occupied) {
 		// Send the color to index 
 		//console.log("send");
-	}
-}
+	//}
+	sendMessageToUser(getCookie("user"), color, [toIndex - 1]);
+} 
 
 function changeColorGrid(index, color, time){
 	var grid = document.getElementById('grid-item-' + index);

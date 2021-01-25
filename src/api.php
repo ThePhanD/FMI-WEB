@@ -213,7 +213,7 @@
 	function getAllExampleRooms() {
 		$db = new Db();
         $response['result'] = $db->getAllExampleRooms();
-
+		
         echo json_encode($response);
     }
 	
