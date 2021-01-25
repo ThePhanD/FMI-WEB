@@ -30,6 +30,12 @@
 			sendMsg(data);
 		}
 		
+				
+		function sendToAll(user,room,message) {
+			data = {type: 'sendToAllRoom', user:user, room:room, message:message};
+			sendMsg(data);
+		}
+		
 		function connectToRoom(user, roomName, is_admin) {
 			
 			if(is_admin == 1) {
@@ -68,5 +74,8 @@
 				setNumbers(curr, total);
 		    } else if (mesType == "roomFull") {
 				handleFullRoom();
-			}
+		} else if (mestype == "sendToAllRoom") {
+				//console.log(data["message"]);
+				//kakvo shte se izpulni
+		}
 		}
