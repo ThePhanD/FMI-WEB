@@ -11,27 +11,29 @@ function removeItem(arr, value) {
 }
 
 function getGridNumber(grid) {
-	if (grid != "grid-display")
+	if (grid != "grid-display") {
 		return /(?<=([^-]*-){2}).*/.exec(grid)[0];
+	}
 }
 
 var list = document.querySelector('#grid-display');
 list.addEventListener('click', function(ev) {
-  if (ev.target.tagName === 'DIV') {
-     ev.target.classList.toggle('done');
-	 if ( ev.target.getAttribute('class') == 'grid-item done') {
-		 activeGrids.push(getGridNumber(ev.target.getAttribute('id')));
-	 }
-	 else {
-		 removeItem(activeGrids, getGridNumber(ev.target.getAttribute('id')));
-	 }
-  }
+	if (ev.target.tagName === 'DIV') {
+		ev.target.classList.toggle('done');
+		if ( ev.target.getAttribute('class') == 'grid-item done') {
+			activeGrids.push(getGridNumber(ev.target.getAttribute('id')));
+		}
+		else {
+			removeItem(activeGrids, getGridNumber(ev.target.getAttribute('id')));
+		}
+	}
 }, false);
 
 if (document.getElementById("remove-grid-button"))
 	document.getElementById("remove-grid-button").addEventListener("click", clearContainer);
+
 function clearContainer() {
-	const display = document.getElementById("grid-display");
+	var display = document.getElementById("grid-display");
     display.innerHTML = "";
 	display.style.setProperty('height', '0px');
 	display.style.setProperty('width', '0px');
@@ -43,8 +45,10 @@ function clearContainer() {
 
 if (document.getElementById("display-grid-button"))
 	document.getElementById("display-grid-button").addEventListener("click", createDisplay);
+
 var rows = 0;
 var cols = 0;
+
 function createDisplay() {
 	var r = parseInt(document.getElementById("row").value);
 	var c = parseInt(document.getElementById("col").value);
@@ -53,7 +57,7 @@ function createDisplay() {
 
 function createGrid(rowNumber, colNumber) {
 	clearContainer();
-	const display = document.getElementById("grid-display");
+	var display = document.getElementById("grid-display");
 	rows = rowNumber;
 	cols = colNumber;
 	if (rows == 0 || cols == 0) {
@@ -68,16 +72,16 @@ function createGrid(rowNumber, colNumber) {
 	display.style.setProperty('border-width', '5px');
 	
 	function makeRows(r, c) {
-	  display.style.setProperty('--grid-rows', r);
-	  display.style.setProperty('--grid-cols', c);
-	  for (i = 0; i < (r * c); i++) {
-		let cell = document.createElement("div");
-		var id = 'grid-item-' + (i + 1);
+		display.style.setProperty('--grid-rows', r);
+		display.style.setProperty('--grid-cols', c);
+		for (i = 0; i < (r * c); i++) {
+			let cell = document.createElement("div");
+			var id = 'grid-item-' + (i + 1);
 		
-		cell.setAttribute("id", id);
-		cell.setAttribute("color", "#00ff00");
-		display.appendChild(cell).className = "grid-item";
-	  };
+			cell.setAttribute("id", id);
+			cell.setAttribute("color", "#00ff00");
+			display.appendChild(cell).className = "grid-item";
+		}
 	};
 
 	makeRows(rows, cols);
@@ -85,6 +89,7 @@ function createGrid(rowNumber, colNumber) {
 
 if (document.getElementById("show-grid-info-button"))
 	document.getElementById("show-grid-info-button").addEventListener("click", showGridInfo);
+
 function showGridInfo() {
 	if (document.getElementById("grid-display").innerHTML == '') {
 		return;
@@ -159,18 +164,21 @@ function setFreeGrids(grids) {
 
 if (document.getElementById("invalid-seat-button"))
 	document.getElementById("invalid-seat-button").addEventListener("click", placeInvalidGrids);
+
 function placeInvalidGrids() {
 	setInvalidGrids(activeGrids);
 }
 
 if (document.getElementById("occupied-seat-button"))
 	document.getElementById("occupied-seat-button").addEventListener("click", placeOcuupiedGrids);
+
 function placeOcuupiedGrids() {
 	setOccupiedGrids(activeGrids);
 }
 
 if (document.getElementById("free-seat-button"))
 	document.getElementById("free-seat-button").addEventListener("click", placeFreeGrids);
+
 function placeFreeGrids() {
 	setFreeGrids(activeGrids);
 }

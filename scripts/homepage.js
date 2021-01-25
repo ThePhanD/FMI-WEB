@@ -1,19 +1,19 @@
 const goToRegister = event => {
-    event.preventDefault();
+	event.preventDefault();
 
-    window.location = 'register.html';
+	window.location = 'register.html';
 }
 
 const goToLogin = event => {
-    event.preventDefault();
+	event.preventDefault();
 
-    window.location = 'login.html';
+	window.location = 'login.html';
 }
 
 (function() {
-    const registerButton = document.getElementById('register_button');
-    registerButton.addEventListener('click', goToRegister);
+	const registerButton = document.getElementById('register_button');
+	registerButton.addEventListener('click', goToRegister);
 
-    const loginButton = document.getElementById('login_button');
-    loginButton.addEventListener('click', goToLogin);
+	const loginButton = document.getElementById('login_button');
+	loginButton.addEventListener('click', goToLogin);
 })();

@@ -16,16 +16,16 @@ function getRandomColor(n, frequency) {
 }
 
 function sendColorTo(toIndex, color) {
-	//var occupied = "red";
-	//var grid = 'grid-item-' + toIndex;
-	//var gridColor = document.getElementById(grid).getAttribute('color');
-	//if ( gridColor == occupied) {
-		// Send the color to index 
-		//console.log("send");
-	//}
-	sendMessageToUser(getCookie("user"), color, [toIndex - 1]);
+	var occupied = "red";
+	var grid = 'grid-item-' + toIndex;
+	var gridColor = document.getElementById(grid).getAttribute('color');
+	
+	if (gridColor == occupied) {
+		sendMessageToUser(getCookie("user"), color, [toIndex - 1]);
+	}
 } 
 
+// Change color only for one grid
 function changeColorGrid(index, color, time){
 	var grid = document.getElementById('grid-item-' + index);
 	grid.style.backgroundColor = color;
@@ -37,6 +37,7 @@ function changeColorGrid(index, color, time){
 	}, time);
 }
 
+// Change color for array of grids
 function changeColorGridArr(grids, color, time) {
 	for (var i = 0; i < grids.length; ++i) {
 		var grid = 'grid-item-' + grids[i];

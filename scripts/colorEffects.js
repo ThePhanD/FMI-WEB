@@ -1,6 +1,6 @@
-
 // Active grid effects
 document.getElementById("active-grid-button").addEventListener("click", changeActiveGrid);
+
 function changeActiveGrid(){
 	var time = document.getElementById("active-grid-time").value * 1000;
 	var color = document.getElementById("active-grid-color").value;
@@ -8,10 +8,11 @@ function changeActiveGrid(){
 		changeColorGridArr(activeGrids, color, time);
 	}
 }
-// End of active grid effects
+
 
 // All effects
 document.getElementById("all-grid-button").addEventListener("click", changeAllGrid);
+
 function changeAllGrid() {
 	var time = document.getElementById("all-grid-time").value * 1000;
 	var color = document.getElementById("all-grid-color").value;
@@ -21,18 +22,20 @@ function changeAllGrid() {
 		changeColorGridArr(gridArr, color, time);
 	}
 }
-// End of all effects
+
 
 // Random effects
 document.getElementById("random-grid-button").addEventListener("click", activateRandomGrid);
+
 function activateRandomGrid() {
 	var n = document.getElementById('random-grid-number').value;
 	showRandomGrid(n);
 }
-// End of random effects
+
 
 // Mexican wave effects
 document.getElementById("mexican-wave-button").addEventListener("click", activateMexicanWave);
+
 function activateMexicanWave() {
 	var col = 1;
 	var colorNumber = 0;
@@ -59,10 +62,11 @@ function activateMexicanWave() {
 	}
 	myLoop();
 }
-// End of mexican wave effects
+
 
 // Seiger effects
 document.getElementById("seiger-button").addEventListener("click", activateSeiger);
+
 function activateSeiger() {
 	var limit = 7;
 	var i  = 0;
@@ -82,7 +86,6 @@ function activateSeiger() {
 	
 	myLoop();
 }
-// End of sieger effects
 
 // Spiral effects
 function getSpiralArr(n, m) {
@@ -129,9 +132,10 @@ function getReverSpiralArr(n, m) {
 	
 	return reverseArr;
 }
-// End of spiral effects
 
+// WTF effect
 document.getElementById("wtf-button").addEventListener("click", activateWTF);
+
 function activateWTF() {
 	let frames = [];
 	var size = rows * cols;

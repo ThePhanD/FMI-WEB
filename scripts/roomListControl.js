@@ -1,22 +1,22 @@
 const showRooms = event => {
-    const settings = {
-        method: 'POST', 
-        headers: {
-            'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
-        },
-    };
+	const settings = {
+		method: 'POST', 
+		headers: {
+			'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+		},
+	};
 
 	fetch('src/api.php/getAllActiveRooms', settings)
-        .then(response => response.json())
+		.then(response => response.json())
 		.then(data => createRooms(data))
-        .catch(error => console.log(error));
+		.catch(error => console.log(error));
 };
 
 
 (function() {
-    const resetButton = document.getElementById('reset-button');
+	const resetButton = document.getElementById('reset-button');
 
-    resetButton.addEventListener('click', showRooms);
+	resetButton.addEventListener('click', showRooms);
 })();
 
 function createRooms(rooms) {

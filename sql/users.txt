@@ -1,0 +1,13 @@
+admins:
+  username, password
+- admin_magi, Magi123
+- admin_ivan, Ivan123
+- admin_4LastTime, 4LastTime
+
+users:
+  username, password
+- gosho, noobMaster69
+- magdalena, iskra33Nova
+- AzNishoNeZnam, 81613NeZnam
+- Sesiq2021, 1202qiseS
+- TheBestLektor, Lektor666

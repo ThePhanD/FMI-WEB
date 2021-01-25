@@ -259,6 +259,5 @@ function loadRoomExample() {
 		
 		setFreeGrids(free_seats);
 		setInvalidGrids(invalid_seats);
-	}
-	
+	}	
 }

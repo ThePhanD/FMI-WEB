@@ -1,9 +1,15 @@
+// Set the colors of the places 
 function setPlaces(strSeats) {
 	var free_seats = [];
 	var invalid_seats = [];
+	var occupied_seats = [];
 	for (var i = 0; i < strSeats.length; i++) {
+		console.log(strSeats[i]);
 		if (strSeats[i] == "1") {
 			free_seats.push(i + 1);
+		}
+		else if (strSeats[i] == "2") {
+			occupied_seats.push(i + 1);
 		}
 		else {
 			invalid_seats.push(i + 1);
@@ -12,8 +18,8 @@ function setPlaces(strSeats) {
 	
 	setFreeGrids(free_seats);
 	setInvalidGrids(invalid_seats);
+	setOccupiedGrids(occupied_seats);
 }
-
 
 function setDisplay(data) {
 	var room = data['result'];
@@ -24,7 +30,6 @@ function setDisplay(data) {
 	var strSeats = room.places;
 	setPlaces(strSeats);
 	
-
 	connectToRoom(room.creator, room.room_name, 1);
 }
 
@@ -36,7 +41,6 @@ socket.onopen = function(e) {
 	console.log("Connection established");
 	setAdminRoom();
 }
-
 
 function setAdminRoom() {
 	const creator = getCookie("user");	
@@ -63,8 +67,10 @@ function setAdminRoom() {
 
 if (document.getElementById("exit-button"))
 	document.getElementById("exit-button").addEventListener("click", exitRoom);
+
 function exitRoom() {
 	var roomName = document.getElementById("room-name").innerHTML.split(" ")[2];
+	
 	disconnectFromRoom(getCookie("user"), roomName);
 	window.location.href = "./dashboard.html";
 }
