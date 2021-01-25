@@ -20,8 +20,8 @@
 			sendMsg(data);
 		}
 		
-		function seatedMessage(message) {
-			data = {type:'seatMessage', message:message};
+		function seatedMessage(seatNumber) {
+			data = {type:'seatMessage', seatNumber:seatNumber};
 			sendMsg(data);
 		}
 		
@@ -57,7 +57,16 @@
 				var color = data["message"];
 				console.log(color);
 				changeToColor(color);
-			} else if (mesType == "seatedMessage") {
+			} else if (mesType == "seatMessage") {
+				var seat =  data["seatNumber"];
+				setSeat(seat);
 		    } else if (mesType == "numberMessage") {
+				var curr = data["current"];
+				var total = data["total"];
+				var places = data["places"];
+				setPlaces(places);
+				setNumbers(curr, total);
+		    } else if (mesType == "roomFull") {
+				handleFullRoom();
 			}
 		}

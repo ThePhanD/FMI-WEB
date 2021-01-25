@@ -27,6 +27,15 @@ function startLoopColors() {
 	loopColors(200);
 }
 
+function setSeat(seat) {
+	document.getElementById("seat-number").innerHTML = "Seat: " + seat;
+}
+
+function handleFullRoom() {
+	alert("Room is full");
+	window.location.href = "./dashboard.html";
+}
+
 
 function sendToUserDisplay() {
 	var data = JSON.parse(localStorage.getItem("roomConnectionData"));
@@ -36,8 +45,6 @@ function sendToUserDisplay() {
 	document.getElementById("room-name").innerHTML = "Room: " + data.roomName;
 	console.log(JSON.parse(localStorage.getItem("roomConnectionData")));
 	connectToRoom(data.username, data.roomName, 0);
-	//var message = "User :'(";
-	//sendMessageToUser(data.creator, data.roomName, message);
 }
 
 

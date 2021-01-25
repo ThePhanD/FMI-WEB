@@ -1,10 +1,4 @@
-function setDisplay(data) {
-	var room = data['result'];
-	createGrid(parseInt(room.rowNumber), parseInt(room.colNumber));
-	document.getElementById("room-name").innerHTML = "Room name: " + room.room_name;
-	document.getElementById("music-name").innerHTML = "Music name: " + room.music;
-	
-	var strSeats = room.places;
+function setPlaces(strSeats) {
 	var free_seats = [];
 	var invalid_seats = [];
 	for (var i = 0; i < strSeats.length; i++) {
@@ -15,12 +9,27 @@ function setDisplay(data) {
 			invalid_seats.push(i + 1);
 		}
 	}
-		
+	
 	setFreeGrids(free_seats);
 	setInvalidGrids(invalid_seats);
+}
 
-	connectToRoom(room.creator, room.room_name, getCookie("isAdmin"));
-	numberMessage(free_seats,strSeats.length);
+
+function setDisplay(data) {
+	var room = data['result'];
+	createGrid(parseInt(room.rowNumber), parseInt(room.colNumber));
+	document.getElementById("room-name").innerHTML = "Room name: " + room.room_name;
+	document.getElementById("music-name").innerHTML = "Music name: " + room.music;
+	
+	var strSeats = room.places;
+	setPlaces(strSeats);
+	
+
+	connectToRoom(room.creator, room.room_name, 1);
+}
+
+function setNumbers(current, total) {
+	document.getElementById("number-people").innerHTML = "Number of people: " + current + "/" + total;
 }
 
 socket.onopen = function(e) {
