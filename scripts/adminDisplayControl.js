@@ -20,9 +20,15 @@ function setDisplay(data) {
 	setInvalidGrids(invalid_seats);
 
 	connectToRoom(room.creator, room.room_name, getCookie("isAdmin"));
+	numberMessage(free_seats,strSeats.length);
 }
 
-setAdminRoom();
+socket.onopen = function(e) {
+	console.log("Connection established");
+	setAdminRoom();
+}
+
+
 function setAdminRoom() {
 	const creator = getCookie("user");	
 	const isActive = 1;

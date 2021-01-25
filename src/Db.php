@@ -106,6 +106,10 @@ class Db {
 		
 		$sql = "SELECT * FROM rooms WHERE creator=:creator AND isActive=:isActive";
         $this->selectCreatorRoomStatement = $this->connection->prepare($sql);
+		
+		$sql = "UPDATE rooms SET places=:places WHERE room_name=:room_name";
+		$this->updateRoomsStatement = $this->connection->prepare($sql);
+
     }
 
     public function insertUserQuery($data) {
@@ -260,6 +264,15 @@ class Db {
 			return $query;
         }
     }
-}
 
+	public function updateRoomsQuery($data) {
+        try {
+            $this->updateRoomsStatement->execute($data);
+
+            return ["success" => true];
+        } catch(PDOException $e) {
+            return ["success" => false, "error" => $e->getMessage()];
+        }
+    }
+}
 ?>
