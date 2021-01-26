@@ -1,2 +1,2 @@
-# FMI-WEB
+# Color Music Performance
 WEB project
